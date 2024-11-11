@@ -1,12 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // Components
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Grid } from '@mui/material';
-import StandardButton from '../../Shared/Buttons/StandardButton';
 
 // Styles
 import styles from './styles';
@@ -15,28 +14,15 @@ import styles from './styles';
 import { colors } from '../../../consts/colors';
 import { measures } from '../../../consts/sizes';
 
-// Services
-import requestFactory from '../../../services/request.factory';
-
-// Contexts
-import ConfigContext from '../../../Providers/ConfigContext';
-
 const theme = createTheme();
 
 function Navigation() {
 	const location = useLocation();
-	const dispatch = useDispatch();
-	const { appName } = useContext(ConfigContext);
 
 	const navigationArray = location.pathname.split('/').slice(1);
 
 	// Local states
-	const userState = useSelector((state) => state.user);
 	const { tasks: tasksState } = useSelector((state) => state.tasks);
-	const { info: organizationInfoState } = useSelector(
-		(state) => state.organization
-	);
-	const [downloadIsLoading, setDownloadIsLoading] = useState(false);
 
 	const tasksIds = tasksState.map((task) => task.uuid);
 
@@ -47,21 +33,6 @@ function Navigation() {
 			result += `/${navigationArray[i]}`;
 		}
 		return result;
-	};
-
-	const downloadEdge = async () => {
-		setDownloadIsLoading(true);
-		const res = await requestFactory({
-			type: 'GET',
-			url: `/organizations/${organizationInfoState.uuid}/edge-api`,
-			userState,
-			dispatch,
-		});
-
-		setDownloadIsLoading(false);
-		if (res.download_url) {
-			window.open(res.download_url, '_blank');
-		}
 	};
 
 	return (
@@ -236,32 +207,6 @@ function Navigation() {
 							})}
 						</>
 					)}
-				</Grid>
-				<Grid
-					item
-					xs={12}
-					sm={3}
-					md={2}
-					sx={{
-						height: '24px',
-						display: 'flex',
-						alignItems: 'center',
-						justifySelf: 'flex-end !important',
-					}}
-				>
-					<div
-						style={{
-							width: '100%',
-							display: 'flex',
-							justifyContent: 'right',
-						}}
-					>
-						<StandardButton
-							value={`Deploy ${appName}`}
-							handleClick={downloadEdge}
-							loading={downloadIsLoading}
-						/>
-					</div>
 				</Grid>
 			</Grid>
 		</ThemeProvider>

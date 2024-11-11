@@ -29,7 +29,7 @@ export const Tasks = () => {
 		(state) => state.tasks
 	);
 
-	const [currentTab, setCurrentTab] = useState('examples');
+	const [currentTab, setCurrentTab] = useState('status');
 
 	useEffect(() => {
 		if (Object.keys(currentTaskState).length === 0) {
