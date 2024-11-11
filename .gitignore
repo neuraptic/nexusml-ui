@@ -1,0 +1,46 @@
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+.husky/
+.storybook/
+.vscode/
+
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+/build-prod
+/build-dev
+
+# misc
+.DS_Store
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+yarn.lock
+package-lock.json
+
+# Basic component to reuse
+BaseComponent
+
+# Storybook generated files
+*storybook.log
+storybook-static
+chromatic.config.json
+
+#exclude test files
+*.test.js

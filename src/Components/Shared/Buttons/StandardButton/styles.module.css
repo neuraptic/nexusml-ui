@@ -1,0 +1,26 @@
+.danger_btn {
+	background: #f8d2d2 !important;
+	letter-spacing: 0.13px !important;
+	color: #dc1212 !important;
+	box-shadow: 0px 3px 6px #00000029 !important;
+	border-radius: 9px !important;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06) !important;
+	font-size: 13px !important;
+	padding: 8px 20px !important;
+	text-transform: none !important;
+}
+
+.danger_btn:hover {
+	color: #fff !important;
+	background: #dc1212 !important;
+}
+
+.button_gray_bg {
+	background: #e4e4e4 !important;
+	border-radius: 9px !important;
+	font-size: 13px !important;
+	letter-spacing: 0.13px !important;
+	color: #666666 !important;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06) !important;
+	padding: 8px 20px !important;
+}

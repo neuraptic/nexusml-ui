@@ -1,0 +1,11 @@
+.delete_confirmation_modal {
+	margin-top: 14px !important;
+}
+
+.delete_confirmation_modal p {
+	letter-spacing: 0.13px !important;
+	color: rgba(26, 28, 33, 0.64) !important;
+	font-size: 14px !important;
+	line-height: 20px !important;
+	margin: 0 0 10px 0 !important;
+}
