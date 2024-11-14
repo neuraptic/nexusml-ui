@@ -1,15 +1,33 @@
-<p align="center">
-  <img src="src/assets/LOGO_WITH_NAME.svg" style="width: 50%" alt=""/>
-</p>
-
----
-
 # NexusML-UI
 
-This is the official repository for the NexusML-UI. You can find the production version of the app
-[here](https://app.nexusml.ai).
+- [NexusML-UI](#nexusml-ui)
+  - [Introduction](#introduction)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Auth0](#auth0)
+  - [Environment variables](#environment-variables)
+  - [License Requirements](#license-requirements)
+    - [Material UI License](#material-ui-license)
+    - [How to Obtain a License](#how-to-obtain-a-license)
+    - [License Key Configuration](#license-key-configuration)
+  - [Documentation](#documentation)
+  - [Contribute](#contribute)
+  - [Issues and requests](#issues-and-requests)
 
-## :hammer_and_wrench: Installation
+## Introduction
+
+NexusML is a multimodal AutoML platform for classification and regression tasks.
+
+We'll be releasing the first version of NexusML very soon. In the meantime, you can explore the [release/0.1.0](https://github.com/neuraptic/nexusml-ui/tree/release/0.1.0) branch.
+
+Please refer to [docs/what-is-nexusml.md](https://github.com/neuraptic/nexusml/blob/main/docs/what-is-nexusml.md) and [docs/concepts.md](https://github.com/neuraptic/nexusml/blob/main/docs/concepts.md) for an overview of NexusML and its key features and concepts.
+
+## Requirements
+
+* Node
+* [Auth0](https://auth0.com/) configuration for user authentication
+
+## Installation
 
 For installation, you must follow first this set of instructions:
 
@@ -54,7 +72,7 @@ npm run build-prod
 
 <br/>
 
-## :lock: Auth0
+## Auth0
 
 This project uses Auth0 for authentication. Follow these steps to set up your Auth0 tenant: (visit Auth0 documentation: [Auth0 Docs](https://auth0.com/docs) and [React Auth0 Docs](https://auth0.com/docs/quickstart/spa/react/interactive))
 
@@ -76,7 +94,7 @@ In the "Settings" tab of your application, configure the following settings:
 
 <br/>
 
-## :gear: Environment variables
+## Environment variables
 
 To set up the environment variables in your project, you need to create three .env files in the root of your project: `.env.local`, `.env.development`, and `.env.production`.
 
@@ -102,7 +120,7 @@ Make sure not to share this file publicly, as it may contain sensitive informati
 
 <br/>
 
-## :bookmark_tabs: License Requirements
+## License Requirements
 
 ### Material UI License
 
@@ -131,7 +149,7 @@ For further assistance, please refer to the [Material UI documentation](https://
 
 <br/>
 
-## :book: Documentation
+## Documentation
 
 The official documentation of the NexusML-UI will be available in this repo.
 
@@ -139,7 +157,7 @@ The official documentation of the NexusML-UI will be available in this repo.
 
 <br/>
 
-## :sparkles: Contribute
+## Contribute
 
 All the guidelines are available at the [contributing](CONTRIBUTING.md) file, so make sure that your code and
 documentation follow all the instructions there before completing any contribution.
@@ -148,7 +166,7 @@ documentation follow all the instructions there before completing any contributi
 
 <br/>
 
-## :bug: Issues and requests
+## Issues and requests
 
 All the issues and feature requests must be created at the [issue](https://github.com/neuraptic/nexusml-ui/issues)
 section of the official NexusML-UI repository, and all the following discussions will be handled there.
