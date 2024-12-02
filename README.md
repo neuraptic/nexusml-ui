@@ -1,16 +1,18 @@
+<p align="center">
+  <img src="public/media/LOGO_WITH_NAME.svg" alt="Logo" height="200">
+</p>
+
+<br>
+
 # NexusML-UI
 
 - [NexusML-UI](#nexusml-ui)
   - [Introduction](#introduction)
   - [Requirements](#requirements)
-  - [Installation](#installation)
-  - [Auth0](#auth0)
-  - [Environment variables](#environment-variables)
-  - [License Requirements](#license-requirements)
-    - [Material UI License](#material-ui-license)
-    - [How to Obtain a License](#how-to-obtain-a-license)
-    - [License Key Configuration](#license-key-configuration)
-  - [Documentation](#documentation)
+  - [Multi-Tenancy and Subscriptions](#multi-tenancy-and-subscriptions)
+  - [Additional Documentation](#additional-documentation)
+  - [Maintainers](#maintainers)
+  - [Acknowledgments](#acknowledgments)
   - [Contribute](#contribute)
   - [Issues and requests](#issues-and-requests)
 
@@ -27,144 +29,51 @@ Please refer to [docs/what-is-nexusml.md](https://github.com/neuraptic/nexusml/b
 * Node
 * [Auth0](https://auth0.com/) configuration for user authentication
 
-## Installation
+## Multi-Tenancy and Subscriptions
 
-For installation, you must follow first this set of instructions:
+NexusML is designed with multi-tenancy in mind, enabling multiple organizations (tenants) to use the platform 
+independently within isolated workspaces. Each tenant has its own environment, where organization members can 
+collaborate on tasks, manage data, and deploy AI models without affecting other tenants.
 
-1. Install Node.js in your local machine (https://nodejs.org/en) (last tested version Node 22.6.0)
+> ℹ️ Multi-tenancy requires [Auth0](https://auth0.com/) for user authentication. Please refer to 
+> [docs/auth0.md](docs/auth0.md) for instructions on setting up Auth0 for NexusML.
 
-<br/>
+NexusML allows you to create and customize subscription plans, adjusting quota limits (such as storage and compute 
+resources) to meet the specific needs of different organizations.
 
-2. Clone the repository.
+> ℹ️ Billing and payment processing are not implemented. To use NexusML in a production environment, you will need to 
+> integrate a billing and payment system such as [Stripe](https://stripe.com/). To do this, you will need to override 
+> the `nexusml.api.jobs.periodic_jobs.bill()` function.
 
-```
-git clone https://github.com/neuraptic/nexusml-ui
-```
+## Additional Documentation
 
-<br/>
+The [docs](docs) directory contains additional documentation:
 
-3. Install all the necessary packages by going to the root directory of the project and using the `npm install` on the command line.
+- [architecture.md](https://github.com/neuraptic/nexusml/blob/main/docs/architecture.md): Describes the architecture of NexusML.
+- [auth0.md](https://github.com/neuraptic/nexusml/blob/main/docs/auth0.md): Describes the Auth0 configuration for NexusML.
+- [quickstart.md](quickstart.md): Provides a quick start guide for NexusML.
+- [states-and-statuses.md](https://github.com/neuraptic/nexusml/blob/main/docs/states-and-statuses.md): Describes NexusML's states and statuses.
+- [what-is-nexusml.md](https://github.com/neuraptic/nexusml/blob/main/docs/what-is-nexusml.md): Provides an overview of NexusML.
 
-```javascript
-npm install
-```
+## Maintainers
 
-**IMPORTANT:**
-(If the installation retrieves a breaking error, remove node_modules folder, package-lock.json and reinstall.)
+NexusML is maintained by the following individuals (in alphabetical order):
 
-<br/>
+- Miguel Perez Martinez ([@melkilin](https://github.com/MiguelPerezMartinez))
 
-4. Once you have all set, you can start the app
+## Acknowledgments
 
-```
-npm start
-npm start-dev
-npm start-prod
-```
+We would like to recognize the valuable contributions of the following individuals (in alphabetical order):
 
-or create a new build for the required environment6
+- Enrique Hernández Calabrés ([@ehcalabres](https://github.com/ehcalabres))
+- Vladyslav Naumenko ([thepureinx000](https://github.com/thepureinx000))
 
-```
-npm run build
-npm run build-dev
-npm run build-prod
-```
-
-<br/>
-
-## Auth0
-
-This project uses Auth0 for authentication. Follow these steps to set up your Auth0 tenant: (visit Auth0 documentation: [Auth0 Docs](https://auth0.com/docs) and [React Auth0 Docs](https://auth0.com/docs/quickstart/spa/react/interactive))
-
-1. Create an Auth0 Account:
-   Go to Auth0 and sign up for an account.
-
-2. Create a New Application:
-   In the Auth0 dashboard, navigate to the "Applications" section and click "Create Application".
-   Select "Single Page Web Applications" and give your application a name.
-   Choose "React" as the technology.
-
-3. Configure the Application:
-
-In the "Settings" tab of your application, configure the following settings:
-
-- Allowed Callback URLs
-- Allowed Logout URLs
-- Allowed Web Origins
-
-<br/>
-
-## Environment variables
-
-To set up the environment variables in your project, you need to create three .env files in the root of your project: `.env.local`, `.env.development`, and `.env.production`.
-
-```
-REACT_APP_NAME='APP name'
-REACT_APP_ENV='environment (development or production)'
-
-# API CONFIG
-REACT_APP_API_URL='API url'
-
-# AUTH0 CONFIG
-REACT_APP_AUTH_REDIRECT_URI='Auth0 redirect/callback URL'
-REACT_APP_AUTH0_DOMAIN='Auth0 tenant domain'
-REACT_APP_AUTH0_CLIENT_ID='Auth0 client ID'
-REACT_APP_AUTH0_AUDIENCE='Auth0 audience'
-REACT_APP_AUTH0_SCOPE='Auth0 scopes'
-
-# MUI LICENSE
-REACT_APP_MUI_LICENSE='Your material UI license'
-```
-
-Make sure not to share this file publicly, as it may contain sensitive information.
-
-<br/>
-
-## License Requirements
-
-### Material UI License
-
-This application utilizes Material UI, which requires a valid license (Pro Plan) for certain features and usage.
-
-**Please note:**
-
-- **Material UI License**: You must obtain a valid Material UI license to use this application. You can get more information about licensing [here](https://mui.com/store/items/mui-x-pro/).
-- **Commercial Use**: If you plan to use Material UI for commercial purposes or access premium features, ensure that your license covers these use cases.
-
-### How to Obtain a License
-
-1. Visit the [Material UI Licensing Page](https://mui.com/store/items/mui-x-pro/).
-2. Follow the instructions on the licensing page to purchase and activate your license.
-
-### License Key Configuration
-
-Once you have your license key, configure it by adding it to your project’s environment variables.
-
-```
-# MUI LICENSE
-REACT_APP_MUI_LICENSE='Your material UI license'
-```
-
-For further assistance, please refer to the [Material UI documentation](https://mui.com/getting-started/installation/).
-
-<br/>
-
-## Documentation
-
-The official documentation of the NexusML-UI will be available in this repo.
-
-:warning: Work in progress.
-
-<br/>
 
 ## Contribute
 
 All the guidelines are available at the [contributing](CONTRIBUTING.md) file, so make sure that your code and
 documentation follow all the instructions there before completing any contribution.
 
-:warning: Work in progress.
-
-<br/>
 
 ## Issues and requests
 
