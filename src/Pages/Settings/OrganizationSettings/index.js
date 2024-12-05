@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // Components
 import { Grid } from '@mui/material';
@@ -9,7 +10,6 @@ import PageTitle from '../../../Components/Shared/PageTitle';
 import Info from './Info';
 import Users from './Users';
 import Usage from './Usage';
-import Subscription from './Subscription';
 import Roles from './Roles';
 import Collaborators from './Collaborators';
 import Apps from './Apps';
@@ -17,13 +17,99 @@ import Apps from './Apps';
 // Consts
 import { measures } from '../../../consts/sizes';
 
-function OrganizationSettings() {
+function OrganizationSettings(props) {
+	const { modifiedOrganizationTabsArray } = props;
+
 	const organizationInfo = useSelector((state) => state.organization.info);
 
 	const [currentTab, setCurrentTab] = useState('info');
+	const [organizationTabsArray, setOrganizationTabsArray] = useState([
+		{
+			label: 'Info',
+			linkTo: 'info',
+			component: <Info />,
+		},
+		{
+			label: 'Usage',
+			linkTo: 'usage',
+			component: <Usage />,
+		},
+		{
+			label: 'Users',
+			linkTo: 'users',
+			component: <Users />,
+		},
+		{
+			label: 'Collaborators',
+			linkTo: 'collaborators',
+			component: <Collaborators />,
+		},
+		{
+			label: 'Roles',
+			linkTo: 'roles',
+			component: <Roles />,
+		},
+		{
+			label: 'Apps',
+			linkTo: 'apps',
+			component: <Apps />,
+		},
+	]);
+	const [newTabsArray, setNewTabsArray] = useState([]);
+
+	useEffect(() => {
+		if (modifiedOrganizationTabsArray?.length > 0) {
+			const updatedTabsArray = organizationTabsArray;
+			modifiedOrganizationTabsArray.forEach((tab) => {
+				const existingTabIndex = updatedTabsArray.findIndex(
+					(element) => element.linkTo === tab.linkTo
+				);
+
+				if (existingTabIndex !== -1) {
+					// Update existing tab
+					if (tab.index !== undefined) {
+						const [removedElement] = updatedTabsArray.splice(
+							existingTabIndex,
+							1
+						);
+						const overwriteTab = {
+							label: tab.label || removedElement.label,
+							linkTo: tab.linkTo || removedElement.linkTo,
+							component: tab.component || removedElement.component,
+						};
+						updatedTabsArray.splice(tab.index, 0, overwriteTab);
+					} else {
+						if (tab.linkTo)
+							updatedTabsArray[existingTabIndex].linkTo = tab.linkTo;
+						if (tab.label) updatedTabsArray[existingTabIndex].label = tab.label;
+						if (tab.component)
+							updatedTabsArray[existingTabIndex].component = tab.component;
+					}
+				} else {
+					// Add new tab
+					const newTab = {
+						label: tab.label,
+						linkTo: tab.linkTo,
+						component: tab.component,
+					};
+					if (tab.index !== undefined) {
+						updatedTabsArray.splice(tab.index, 0, newTab);
+					} else {
+						updatedTabsArray.push(newTab);
+					}
+				}
+			});
+
+			// Update the state only once after all modifications
+			setNewTabsArray(updatedTabsArray);
+		} else {
+			setNewTabsArray(organizationTabsArray);
+		}
+	}, [modifiedOrganizationTabsArray]);
 
 	return (
-		organizationInfo !== null && (
+		organizationInfo !== null &&
+		newTabsArray.length > 0 && (
 			<>
 				<PageTitle
 					title="Organization settings"
@@ -31,36 +117,7 @@ function OrganizationSettings() {
 					tabs={{
 						currentTab,
 						setCurrentTab,
-						tabsArray: [
-							{
-								label: 'Info',
-								linkTo: 'info',
-							},
-							{
-								label: 'Usage',
-								linkTo: 'usage',
-							},
-							{
-								label: 'Subscription',
-								linkTo: 'subscription',
-							},
-							{
-								label: 'Users',
-								linkTo: 'users',
-							},
-							{
-								label: 'Collaborators',
-								linkTo: 'collaborators',
-							},
-							{
-								label: 'Roles',
-								linkTo: 'roles',
-							},
-							{
-								label: 'Apps',
-								linkTo: 'apps',
-							},
-						],
+						tabsArray: newTabsArray,
 					}}
 				/>
 				<Grid
@@ -81,17 +138,15 @@ function OrganizationSettings() {
 						flexDirection: 'column',
 					}}
 				>
-					{currentTab === 'info' && <Info />}
-					{currentTab === 'users' && <Users />}
-					{currentTab === 'usage' && <Usage />}
-					{currentTab === 'subscription' && <Subscription />}
-					{currentTab === 'collaborators' && <Collaborators />}
-					{currentTab === 'roles' && <Roles />}
-					{currentTab === 'apps' && <Apps />}
+					{newTabsArray?.find((tab) => tab.linkTo === currentTab).component}
 				</Grid>
 			</>
 		)
 	);
 }
+
+OrganizationSettings.propTypes = {
+	modifiedOrganizationTabsArray: PropTypes.array,
+};
 
 export default OrganizationSettings;
