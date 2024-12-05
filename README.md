@@ -4,9 +4,9 @@
 
 <br>
 
-# NexusML-UI
+# NexusML UI
 
-- [NexusML-UI](#nexusml-ui)
+- [NexusML UI](#nexusml-ui)
   - [Introduction](#introduction)
   - [Requirements](#requirements)
   - [Multi-Tenancy and Subscriptions](#multi-tenancy-and-subscriptions)
@@ -25,8 +25,7 @@ We'll be releasing the first version of NexusML very soon. In the meantime, you 
 Please refer to [docs/what-is-nexusml.md](https://github.com/neuraptic/nexusml/blob/main/docs/what-is-nexusml.md) and [docs/concepts.md](https://github.com/neuraptic/nexusml/blob/main/docs/concepts.md) for an overview of NexusML and its key features and concepts.
 
 ## Requirements
-
-* Node
+* [Node.js](https://github.com/nodejs/Release)
 * [Auth0](https://auth0.com/) configuration for user authentication
 
 ## Multi-Tenancy and Subscriptions

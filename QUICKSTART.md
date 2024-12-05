@@ -6,7 +6,6 @@ instructions to ensure a smooth onboarding experience.
 <!-- toc -->
 
 - [Quickstart Guide](#quickstart-guide)
-  - [Prerequisites](#prerequisites)
     - [Environment Variables](#environment-variables)
     - [Auth0 (Optional)](#auth0-optional)
   - [Installation](#installation)
@@ -17,12 +16,6 @@ instructions to ensure a smooth onboarding experience.
     - [How to Obtain a License](#how-to-obtain-a-license)
     - [License Key Configuration](#license-key-configuration)
   - [Usage](#usage)
-
-## Prerequisites
-
-This guide uses [Ubuntu](https://ubuntu.com/download), but you may choose any Linux distribution that suits your 
-needs. However, we can only ensure compatibility with Ubuntu or [Amazon Linux](https://aws.amazon.com/amazon-linux-2). 
-Windows is also supported.
 
 ### Environment Variables
 
