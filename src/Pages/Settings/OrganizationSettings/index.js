@@ -18,12 +18,12 @@ import Apps from './Apps';
 import { measures } from '../../../consts/sizes';
 
 function OrganizationSettings(props) {
-	const { modifiedOrganizationTabsArray } = props;
+	const { customTabs } = props;
 
 	const organizationInfo = useSelector((state) => state.organization.info);
 
 	const [currentTab, setCurrentTab] = useState('info');
-	const [organizationTabsArray, setOrganizationTabsArray] = useState([
+	const [organizationTabsArray] = useState([
 		{
 			label: 'Info',
 			linkTo: 'info',
@@ -58,9 +58,9 @@ function OrganizationSettings(props) {
 	const [newTabsArray, setNewTabsArray] = useState([]);
 
 	useEffect(() => {
-		if (modifiedOrganizationTabsArray?.length > 0) {
+		if (customTabs?.length > 0) {
 			const updatedTabsArray = organizationTabsArray;
-			modifiedOrganizationTabsArray.forEach((tab) => {
+			customTabs.forEach((tab) => {
 				const existingTabIndex = updatedTabsArray.findIndex(
 					(element) => element.linkTo === tab.linkTo
 				);
@@ -105,7 +105,7 @@ function OrganizationSettings(props) {
 		} else {
 			setNewTabsArray(organizationTabsArray);
 		}
-	}, [modifiedOrganizationTabsArray]);
+	}, [customTabs]);
 
 	return (
 		organizationInfo !== null &&
@@ -146,7 +146,7 @@ function OrganizationSettings(props) {
 }
 
 OrganizationSettings.propTypes = {
-	modifiedOrganizationTabsArray: PropTypes.array,
+	customTabs: PropTypes.array,
 };
 
 export default OrganizationSettings;
