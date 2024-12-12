@@ -1,18 +1,17 @@
-# Contributing to NexusML-UI
+# Contributing to NexusML UI
 
 <!-- toc -->
 
-- [Contributing to NexusML-UI](#contributing-to-nexusml-ui)
-  - [Coding Style](#coding-style)
-  - [Git](#git)
-    - [Branch Naming](#branch-naming)
-    - [Commits](#commits)
-    - [Pull Requests](#pull-requests)
-      - [Title](#title)
-      - [Description](#description)
-  - [Release Versioning](#release-versioning)
-  - [Release Notes](#release-notes)
-  - [Abbreviation Guide](#abbreviation-guide)
+- [Coding Style](#coding-style)
+- [Git](#git)
+  - [Branch Naming](#branch-naming)
+  - [Commits](#commits)
+  - [Pull Requests](#pull-requests)
+    - [Title](#title)
+    - [Description](#description)
+- [Release Versioning](#release-versioning)
+- [Release Notes](#release-notes)
+- [Abbreviation Guide](#abbreviation-guide)
 
 ## Coding Style
 
@@ -207,7 +206,3 @@ shown below.
 
 Each section should be meticulously updated with each new release to accurately reflect the latest developments. This 
 structured approach ensures a clear and comprehensive documentation of the project's ongoing progress and changes.
-
-## Abbreviation Guide
-
-*Consider creating an abbreviation guide like [fastai Abbreviation Guide](https://docs.fast.ai/dev/abbr.html).*
