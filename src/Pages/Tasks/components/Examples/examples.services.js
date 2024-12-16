@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 // Components
 import {
-	Badge,
 	Box,
 	Checkbox,
 	Divider,

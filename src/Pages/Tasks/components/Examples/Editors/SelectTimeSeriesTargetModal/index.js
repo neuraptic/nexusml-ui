@@ -248,7 +248,7 @@ const SelectTimeSeriesTargetModal = (props) => {
 										// }
 										checked={
 											selectedSlice === output.uuid ||
-											currentExampleState.slices.find(
+											currentExampleState.slices?.find(
 												(el) => selectedSlice === el.uuid
 											)?.element === output.name
 										}

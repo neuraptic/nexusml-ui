@@ -148,10 +148,41 @@ export const createCell = {
 			</Typography>
 		);
 	},
-	category: ({ classes, cellValue, categoriesState, valueType, params }) => {
+	category: ({
+		classes,
+		cellValue,
+		categoriesState,
+		valueType,
+		params,
+		multiValue,
+	}) => {
 		const { rowCell } = classes;
 
 		if (!cellValue) return <Typography noWrap />;
+
+		if (multiValue && cellValue.length > 0) {
+			return (
+				<Badge
+					badgeContent={cellValue.length}
+					color="primary"
+					max={999}
+					badgeInset="0 -50px 0 0"
+					anchorOrigin={{
+						vertical: 'bottom',
+						horizontal: 'right',
+					}}
+				>
+					<Typography
+						noWrap
+						sx={{
+							maxWidth: '100px',
+						}}
+					>
+						{cellValue.map((value) => value).join(', ')}
+					</Typography>
+				</Badge>
+			);
+		}
 
 		if (
 			categoriesState &&

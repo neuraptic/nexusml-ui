@@ -81,6 +81,11 @@ const styles = () => ({
 		},
 	},
 
+	uploadCSVIcon: {
+		fontSize: '3rem',
+		color: `${colors.gray}`,
+	},
+
 	loadingButton: {
 		display: 'flex',
 		justifyContent: 'center',

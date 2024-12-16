@@ -997,7 +997,10 @@ export const CreateOrUpdateExampleModal = (props) => {
 													style={styles().createExampleButton}
 												>
 													Add CSV file
-													<FontAwesomeIcon icon={faFileCsv} />
+													<FontAwesomeIcon
+														style={{ ...styles().uploadCSVIcon }}
+														icon={faFileCsv}
+													/>
 												</button>
 												<input
 													type="file"
@@ -1023,6 +1026,7 @@ export const CreateOrUpdateExampleModal = (props) => {
 												<div className={cssStyles.Export_btn}>
 													<StandardButton
 														type="textButton"
+														sx={{ display: 'flex', justifyContent: 'center' }}
 														value={
 															<CSVLink
 																filename={csvReport.filename}
