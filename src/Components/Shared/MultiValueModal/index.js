@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
@@ -11,7 +10,7 @@ import { SimplePagination } from '../CustomPagination/CustomPagination.stories';
 import styles from './styles';
 
 const MultiValueModal = (props) => {
-	const { title, actions, children } = props;
+	const { children } = props;
 
 	return (
 		<>
@@ -35,7 +34,7 @@ const MultiValueModal = (props) => {
 						<FontAwesomeIcon
 							icon={faAngleLeft}
 							style={{ fontSize: '48px' }}
-							onClick={(e) => {
+							onClick={() => {
 								// handleClick(e);
 							}}
 						/>
@@ -54,7 +53,7 @@ const MultiValueModal = (props) => {
 						<FontAwesomeIcon
 							icon={faAngleRight}
 							style={{ fontSize: '48px' }}
-							onClick={(e) => {
+							onClick={() => {
 								// handleClick(e);
 							}}
 						/>
@@ -67,8 +66,6 @@ const MultiValueModal = (props) => {
 
 MultiValueModal.propTypes = {
 	children: PropTypes.object,
-	title: PropTypes.string,
-	actions: PropTypes.object,
 };
 
 export default MultiValueModal;

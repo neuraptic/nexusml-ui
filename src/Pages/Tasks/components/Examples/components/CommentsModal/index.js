@@ -32,7 +32,6 @@ export const CommentsModal = (props) => {
 	const scrollableRef = useRef(null);
 
 	// Global states
-	const { accessToken } = useSelector((state) => state.user);
 	const { info: organizationInfoState } = useSelector(
 		(state) => state.organization
 	);

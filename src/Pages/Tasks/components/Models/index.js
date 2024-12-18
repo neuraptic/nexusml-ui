@@ -35,6 +35,7 @@ import { measures } from '../../../../consts/sizes';
 // Services
 import checkIsAuthorized from '../../../../services/checkIsAuthorized';
 import { getLocalDateTime } from '../../../../services/date';
+import FixedFlow from '../../../../Components/Core/Task/Schema/FixedFlow';
 
 export const TaskModels = () => {
 	const dispatch = useDispatch();
@@ -464,7 +465,7 @@ export const TaskModels = () => {
 					title="Production AI Model schema"
 					content={
 						<Box sx={{ height: '584px' }}>
-							{/* <FixedFlow tmpSchema={currentSchema} /> */}
+							<FixedFlow tmpSchema={currentSchema} />
 							{
 								// TODO: When has a task with production model, check how is structured the schema response of the model to show the elements like task/schema view
 							}

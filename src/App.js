@@ -108,7 +108,6 @@ const App = ({ routerConfig = {} }) => {
 		logout,
 		isAuthenticated,
 		getAccessTokenSilently,
-		loginWithRedirect,
 		isLoading: auth0IsLoading,
 	} = useAuth0();
 

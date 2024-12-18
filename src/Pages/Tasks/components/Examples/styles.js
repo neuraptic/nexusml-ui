@@ -1,6 +1,6 @@
 import { dataTypeToColorMap } from '../../../../consts/dataTypeToColorMap';
 
-const styles = (elementType) => ({
+const styles = () => ({
 	tableContainer: {
 		height: '500px',
 	},
