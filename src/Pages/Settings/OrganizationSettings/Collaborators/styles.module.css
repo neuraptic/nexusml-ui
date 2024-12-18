@@ -1,0 +1,10 @@
+.table_title {
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.table_body,
+.table_row,
+.table_main tr,
+.table_main tr td {
+	box-shadow: none !important;
+}

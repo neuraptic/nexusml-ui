@@ -1,0 +1,27 @@
+.logo {
+	font-family: 'Montserrat-Medium', Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+}
+
+.wrap_overflow_text {
+	display: inline-block;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.text_hover_blue,
+.fill_blue_hover {
+	cursor: pointer;
+}
+.text_hover_blue:hover {
+	color: #1492e6;
+}
+.fill_blue_hover:hover {
+	fill: #1492e6;
+}
+.remove_btn_bg button {
+	background: transparent !important;
+	padding: 0 !important;
+	box-shadow: none !important;
+}
