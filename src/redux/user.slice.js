@@ -11,14 +11,17 @@ export const GET_USER = createAsyncThunk(
 	async ({ userState, navigate }) => {
 		newLog('user/GET_USER');
 
-		const response = await fetch(`${process.env.REACT_APP_API_URL}/myaccount`, {
-			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${userState.accessToken}`,
-				'content-type': 'application/json',
-				cors: 'no-cors',
-			},
-		});
+		const response = await fetch(
+			`${process.env.NEXUSML_UI_API_URL}/myaccount`,
+			{
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${userState.accessToken}`,
+					'content-type': 'application/json',
+					cors: 'no-cors',
+				},
+			}
+		);
 
 		if (response) {
 			if (response.status === 401) {

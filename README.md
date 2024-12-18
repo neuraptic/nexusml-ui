@@ -4,6 +4,10 @@
 
 - [Introduction](#introduction)
 - [Requirements](#requirements)
+  - [Libraries and Tools](#libraries-and-tools)
+  - [Material UI License](#material-ui-license)
+  - [Environment Variables](#environment-variables)
+- [Installation](#installation)
 - [Maintainers](#maintainers)
 - [Acknowledgments](#acknowledgments)
 - [Contribute](#contribute)
@@ -33,7 +37,7 @@ To obtain a license, follow these steps:
 Once you have your license key, configure it by adding it to your project’s environment variables.
 
 ```
-REACT_APP_MUI_LICENSE='Your material UI license'
+NEXUSML_UI_MUI_LICENSE='Your material UI license'
 ```
 
 For further assistance, please refer to the [Material UI documentation](https://mui.com/getting-started/installation/).
@@ -45,20 +49,20 @@ Here is the list of required environment variables:
 > ⚠️ **Warning:** There are three environment setups (```.env.local```, ```.env.dev```, and ```.env.prod```) to ensure smooth deployment and proper configuration across different stages of development. Remember to update the package.json scripts to match your ```.env``` configuration.
 
 ```
-REACT_APP_NAME='APP name'
-REACT_APP_ENV='environment (development or production)'
-REACT_APP_API_URL='API url'
-REACT_APP_MUI_LICENSE='Your Material UI license'
+NEXUSML_UI_NAME='APP name'
+NEXUSML_UI_ENV='environment (development or production)'
+NEXUSML_UI_API_URL='API url'
+NEXUSML_UI_MUI_LICENSE='Your Material UI license'
 ```
 
 For Auth0 (optional), you will need to set the following environment variables:
 
 ```
-REACT_APP_AUTH_REDIRECT_URI='Auth0 redirect/callback URL'
-REACT_APP_AUTH0_DOMAIN='Auth0 tenant domain'
-REACT_APP_AUTH0_CLIENT_ID='Auth0 client ID'
-REACT_APP_AUTH0_AUDIENCE='Auth0 audience'
-REACT_APP_AUTH0_SCOPE='Auth0 scopes'
+NEXUSML_UI_AUTH_REDIRECT_URI='Auth0 redirect/callback URL'
+NEXUSML_UI_AUTH0_DOMAIN='Auth0 tenant domain'
+NEXUSML_UI_AUTH0_CLIENT_ID='Auth0 client ID'
+NEXUSML_UI_AUTH0_AUDIENCE='Auth0 audience'
+NEXUSML_UI_AUTH0_SCOPE='Auth0 scopes'
 ```
 
 ## Installation

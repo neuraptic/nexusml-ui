@@ -15,7 +15,7 @@ import reportWebVitals from './reportWebVitals';
 import { AppProviders } from './Providers/AppProviders';
 
 // Set Material-UI Pro license key
-LicenseInfo.setLicenseKey(process.env.REACT_APP_MUI_LICENSE);
+LicenseInfo.setLicenseKey(process.env.NEXUSML_UI_MUI_LICENSE);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

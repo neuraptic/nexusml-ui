@@ -11,7 +11,7 @@ const requestFactory = async (props) => {
 	let res = null;
 
 	if (userState?.defaultAPIKeyEnabled) {
-		res = await fetch(`${process.env.REACT_APP_API_URL}${url}`, {
+		res = await fetch(`${process.env.NEXUSML_UI_API_URL}${url}`, {
 			method: type,
 			headers: {
 				Authorization: `Bearer ${userState.accessToken}`,
@@ -22,7 +22,7 @@ const requestFactory = async (props) => {
 			body: data && JSON.stringify(data),
 		});
 	} else {
-		res = await fetch(`${process.env.REACT_APP_API_URL}${url}`, {
+		res = await fetch(`${process.env.NEXUSML_UI_API_URL}${url}`, {
 			method: type,
 			headers: {
 				Authorization: `Bearer ${userState.accessToken}`,
@@ -47,7 +47,7 @@ const requestFactory = async (props) => {
 		statusError = true;
 
 	if (statusError && type === 'GET') {
-		res = await fetch(`${process.env.REACT_APP_API_URL}${url}`, {
+		res = await fetch(`${process.env.NEXUSML_UI_API_URL}${url}`, {
 			method: type,
 			headers: {
 				Authorization: `Bearer ${userState.accessToken}`,

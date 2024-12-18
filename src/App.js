@@ -150,7 +150,7 @@ const App = ({ routerConfig = {} }) => {
 
 	const checkIsAuth0Enabled = async () => {
 		const res = await fetch(
-			`${process.env.REACT_APP_API_URL}/default-api-key`,
+			`${process.env.NEXUSML_UI_API_URL}/default-api-key`,
 			{
 				method: 'get',
 			}
@@ -488,7 +488,7 @@ const App = ({ routerConfig = {} }) => {
 	}, [isTopMenu, windowSize]);
 
 	useEffect(() => {
-		if (process.env.REACT_APP_DEFAULT_API_KEY_ENABLED) {
+		if (process.env.NEXUSML_UI_DEFAULT_API_KEY_ENABLED) {
 			navigate('/dashboard');
 			return;
 		}
@@ -515,7 +515,7 @@ const App = ({ routerConfig = {} }) => {
 		navigate('/signin');
 	};
 
-	if (process.env.REACT_APP_IS_MAINTENANCE_MODE === 'true') {
+	if (process.env.NEXUSML_UI_IS_MAINTENANCE_MODE === 'true') {
 		return (
 			<Routes>
 				<Route exact path="/" element={<MaintenancePage />} />

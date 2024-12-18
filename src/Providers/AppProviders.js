@@ -20,7 +20,7 @@ import APP_LOGO_WITH_NAME from '../assets/LOGO_WITH_NAME.svg';
 import APP_LOGO from '../assets/LOGO.png';
 import APP_MAINTENANCE_IMAGE from '../assets/MAINTENANCE.svg';
 
-LicenseInfo.setLicenseKey(process.env.REACT_APP_MUI_LICENSE);
+LicenseInfo.setLicenseKey(process.env.NEXUSML_UI_MUI_LICENSE);
 
 const onRedirectCallback = (appState) => {
 	history.push(
@@ -36,25 +36,25 @@ export const AppProviders = ({
 }) => {
 	const store = createStore(reduxConfig);
 	const auth = {
-		domain: authConfig?.domain || process.env.REACT_APP_AUTH0_DOMAIN,
-		clientId: authConfig?.clientId || process.env.REACT_APP_AUTH0_CLIENT_ID,
+		domain: authConfig?.domain || process.env.NEXUSML_UI_AUTH0_DOMAIN,
+		clientId: authConfig?.clientId || process.env.NEXUSML_UI_AUTH0_CLIENT_ID,
 		onRedirectCallback,
 		authorizationParams: {
 			redirect_uri: window.location.origin,
-			audience: authConfig?.audience || process.env.REACT_APP_AUTH0_AUDIENCE,
-			scope: authConfig?.scope || process.env.REACT_APP_AUTH0_SCOPE,
+			audience: authConfig?.audience || process.env.NEXUSML_UI_AUTH0_AUDIENCE,
+			scope: authConfig?.scope || process.env.NEXUSML_UI_AUTH0_SCOPE,
 			useRefreshTokens: true,
 		},
 	};
 
 	const appConfigContext = React.useMemo(
 		() => ({
-			appName: appConfig?.appName || process.env.REACT_APP_APP_NAME,
+			appName: appConfig?.appName || process.env.NEXUSML_UI_APP_NAME,
 			appLogoWithName: appConfig?.appLogoWithName || APP_LOGO_WITH_NAME,
 			appLogo: appConfig?.appLogo || APP_LOGO,
 			appMaintenanceImage:
 				appConfig?.appMaintenanceImage || APP_MAINTENANCE_IMAGE,
-			apiUrl: appConfig?.apiUrl || process.env.REACT_APP_API_URL,
+			apiUrl: appConfig?.apiUrl || process.env.NEXUSML_UI_API_URL,
 		}),
 		[]
 	);
