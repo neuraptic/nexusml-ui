@@ -58,11 +58,11 @@ export const LoaderStateManager = (props) => {
 
 	useEffect(() => {
 		if (
-			userState.id !== '' &&
-			organizationState.info.id !== '' &&
+			userState?.id !== '' &&
+			organizationState?.info?.id !== '' &&
 			JSON.parse(window.localStorage.getItem('__permifyUser'))?.id &&
-			!userState.isLoading &&
-			!organizationState.isLoading
+			!userState?.isLoading &&
+			!organizationState?.isLoading
 		) {
 			dispatch(APP_IS_LOADING(false));
 			dispatch(LOAD_USER_ROLES(false));

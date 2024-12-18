@@ -169,7 +169,7 @@ export const userSliceConfig = {
 		builder.addCase(GET_USER_SETTINGS.fulfilled, (state, { payload }) => {
 			state.isLoading = false;
 
-			state.notifications = payload.notifications || false;
+			state.notifications = payload?.notifications || false;
 		});
 		builder.addCase(GET_USER_SETTINGS.rejected, (state) => {
 			state.isLoading = true;

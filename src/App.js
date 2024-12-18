@@ -564,6 +564,7 @@ const App = ({ routerConfig = {} }) => {
 				<CssBaseline />
 				<AppRouter
 					isAuthenticated={isAuthenticated}
+					setIsTopMenu={setIsTopMenu}
 					routerConfig={routerConfig}
 				/>
 				<Footer />

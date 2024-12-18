@@ -60,7 +60,7 @@ const mergeRoutes = (defaultRoutes, customRoutes) => {
 	return defaultRoutes.map(merge);
 };
 
-const AppRouter = ({ isAuthenticated, routerConfig }) => {
+const AppRouter = ({ isAuthenticated, routerConfig, setIsTopMenu }) => {
 	const defaultRoutes = [
 		{
 			path: '*',
@@ -74,7 +74,7 @@ const AppRouter = ({ isAuthenticated, routerConfig }) => {
 		{ path: '/complete-profile', element: <CompleteProfile /> },
 		{
 			path: '/create-organization',
-			element: <CreateNewOrganization />,
+			element: <CreateNewOrganization setIsTopMenu={setIsTopMenu} />,
 		},
 		{
 			path: '/',
@@ -123,6 +123,7 @@ const AppRouter = ({ isAuthenticated, routerConfig }) => {
 AppRouter.propTypes = {
 	isAuthenticated: PropTypes.any,
 	routerConfig: PropTypes.any,
+	setIsTopMenu: PropTypes.func,
 };
 
 export default AppRouter;

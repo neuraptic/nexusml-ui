@@ -38,7 +38,7 @@ import ConfigContext from '../../Providers/ConfigContext';
 export const CreateNewOrganization = (props) => {
 	const { setIsTopMenu } = props;
 
-	const { appName, appLogoWithName, apiUrl } = useContext(ConfigContext);
+	const { appLogoWithName, apiUrl } = useContext(ConfigContext);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -77,7 +77,7 @@ export const CreateNewOrganization = (props) => {
 
 	const handleValidate = async (e) => {
 		const { name, value } = e.target;
-		const res = await completeProfileValidationSchema.fields[name]
+		const res = await completeOrganizationValidationSchema.fields[name]
 			.validate(value)
 			.catch((err) => {
 				setOrganizationInfoErrors({
@@ -162,18 +162,12 @@ export const CreateNewOrganization = (props) => {
 							data: values,
 						})
 					);
-					await dispatch(
-						CREATE_ORGANIZATION({
-							userState,
-							dispatch,
-							navigate,
-							data: values,
-						})
-					);
 					dispatch(APP_IS_LOADING(true));
 					navigate('/dashboard');
+					dispatch(APP_IS_LOADING(false));
 				}
 			}
+			setButtonLoading(true);
 		},
 	});
 
@@ -182,7 +176,7 @@ export const CreateNewOrganization = (props) => {
 			<Grid item xl={4} lg={4} xs={12} md={12} sm={12}>
 				<Box sx={styles().pageTitleContainer}>
 					<img src={appLogoWithName} alt="" style={{ height: '15vh' }} />
-					<div
+					{/* <div
 						style={{
 							marginLeft: '6px',
 							display: 'flex',
@@ -192,7 +186,7 @@ export const CreateNewOrganization = (props) => {
 						}}
 					>
 						<div style={{ fontSize: '6rem' }}>{appName}</div>
-					</div>
+					</div> */}
 				</Box>
 			</Grid>
 
