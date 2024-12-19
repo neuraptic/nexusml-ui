@@ -307,7 +307,7 @@ export const TaskAITesting = () => {
 				setRows,
 				schemaState,
 				testsState,
-				aimodels: aimodels.AIModels,
+				aimodels: aimodels.aimodels,
 			});
 		}
 	}, [schemaState, testsState, imagesBufferState, documentsBufferState]);

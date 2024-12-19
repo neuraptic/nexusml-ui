@@ -199,8 +199,8 @@ export const FiltersModal = (props) => {
 									value={filters.ai_model}
 									onChange={handleChangeFilters}
 								>
-									{aimodels?.AIModels?.length > 0 &&
-										aimodels.AIModels.map((model) => (
+									{aimodels?.aimodels?.length > 0 &&
+										aimodels.aimodels.map((model) => (
 											<MenuItem key={uuidv4()} value={model.uuid}>
 												{model?.version || ''}
 											</MenuItem>

@@ -505,9 +505,9 @@ export function TaskSchema() {
 								</Grid>
 							)}
 							<Grid
-								item
+								container
 								sx={{
-									height: '200px',
+									maxHeight: '200px',
 									overflowY: 'auto !important',
 									overflowX: 'hidden',
 									display: 'flex',
@@ -550,7 +550,15 @@ export function TaskSchema() {
 
 								{!isDeleteLoading &&
 									filteredOutputs?.map((output) => (
-										<Grid key={uuidv4()} item sx={styles.elementComponent}>
+										<Grid
+											key={uuidv4()}
+											item
+											xs={12}
+											sx={{
+												...styles.elementComponent,
+												height: '50px',
+											}}
+										>
 											<Grid
 												item
 												xs={1}
@@ -573,7 +581,7 @@ export function TaskSchema() {
 														output.display_name
 															? output.display_name
 															: output.name,
-														'outputs'
+														'inputs'
 													)}
 												</Grid>
 												<Grid item xs={12} sx={{ fontSize: '0.7rem' }}>
@@ -595,8 +603,8 @@ export function TaskSchema() {
 													}
 												>
 													<IconButton
-														color="primary"
 														sx={{ width: '25px', height: '25px' }}
+														color="primary"
 														onClick={() =>
 															handleCreateOrUpdateElement(
 																'update',
@@ -609,11 +617,7 @@ export function TaskSchema() {
 													</IconButton>
 												</HasAccess>
 											</Grid>
-											<Grid
-												item
-												xs={1}
-												sx={{ display: 'flex', alignItems: 'center' }}
-											>
+											<Grid item xs={1}>
 												<HasAccess
 													roles={defaultRoles}
 													permissions="task.delete"
@@ -624,8 +628,8 @@ export function TaskSchema() {
 													}
 												>
 													<IconButton
-														color="error"
 														sx={{ width: '25px', height: '25px' }}
+														color="error"
 														onClick={() =>
 															handleDeleteElement('outputs', output)
 														}

@@ -402,7 +402,7 @@ export const TaskStatus = (props) => {
 									}}
 								>
 									<h4 style={{ margin: 0, padding: 0 }}>
-										Active Learning (AL)::
+										Active Learning (AL):
 									</h4>
 									{servicesStatus.active_learning !== 0 ? (
 										currentTaskSettingsState.active_learning.enabled ? (

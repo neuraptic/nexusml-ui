@@ -148,12 +148,9 @@ const App = ({ routerConfig = {} }) => {
 	};
 
 	const checkIsAuth0Enabled = async () => {
-		const res = await fetch(
-			`${process.env.NEXUSML_UI_API_URL}/default-api-key`,
-			{
-				method: 'get',
-			}
-		);
+		const res = await fetch(`${process.env.NEXUSML_UI_API_URL}/config`, {
+			method: 'get',
+		});
 
 		if (res) {
 			dispatch(

@@ -184,195 +184,198 @@ export const TaskModels = () => {
 									>
 										{!aimodelsLoaderState ? (
 											aimodels &&
-											aimodels.AIModelss &&
-											aimodels.AIModelss.map((model) => (
-												<Box
-													key={uuidv4()}
-													sx={{
-														...styles().modelItemContainer,
-														padding: '12px',
-														outline:
-															aimodels.productionAIModels?.uuid ===
-																model.uuid &&
-															`2px solid ${colors.buttonPrimaryColor}`,
-														borderRadius: '12px',
-													}}
-												>
-													<Box sx={styles().modelLeftContainer}>
-														<Box
-															sx={{
-																display: 'flex',
-																flexDirection: 'column',
-															}}
-														>
-															<Typography
-																variant="span"
-																sx={{ color: '#666666', fontSize: 13 }}
-															>
-																Id: {model.uuid}
-															</Typography>
-
-															<Box display="flex" alignItems="center">
-																<Typography
-																	variant="span"
-																	sx={{ color: '#666666', fontSize: 13 }}
-																>
-																	Version: {model.version || ''}
-																</Typography>
-															</Box>
-
-															<Box display="flex" alignItems="center">
-																Creation date:
-																<Typography
-																	variant="span"
-																	sx={{ color: '#666666', fontSize: 13 }}
-																>
-																	{format(
-																		new Date(
-																			getLocalDateTime(model.created_at)
-																		),
-																		'yyyy/MM/dd, HH:mm'
-																	)}
-																</Typography>
-															</Box>
-
+											aimodels.aimodels &&
+											aimodels.aimodels
+												.map((model) => (
+													<Box
+														key={uuidv4()}
+														sx={{
+															...styles().modelItemContainer,
+															padding: '12px',
+															outline:
+																aimodels.productionAIModels?.uuid ===
+																	model.uuid &&
+																`2px solid ${colors.buttonPrimaryColor}`,
+															borderRadius: '12px',
+														}}
+													>
+														<Box sx={styles().modelLeftContainer}>
 															<Box
 																sx={{
-																	marginTop: '24px',
 																	display: 'flex',
-																	alignItems: 'center',
-																	gap: 2,
+																	flexDirection: 'column',
 																}}
 															>
-																<StandardButton
-																	value="Show schema"
-																	handleClick={() => {
-																		setOpenShowSchema(true);
-																		setCurrentSchema(model.task_schema);
+																<Typography
+																	variant="span"
+																	sx={{ color: '#666666', fontSize: 13 }}
+																>
+																	Id: {model.uuid}
+																</Typography>
+
+																<Box display="flex" alignItems="center">
+																	<Typography
+																		variant="span"
+																		sx={{ color: '#666666', fontSize: 13 }}
+																	>
+																		Version: {model.version || ''}
+																	</Typography>
+																</Box>
+
+																<Box display="flex" alignItems="center">
+																	Creation date:
+																	<Typography
+																		variant="span"
+																		sx={{ color: '#666666', fontSize: 13 }}
+																	>
+																		{format(
+																			new Date(
+																				getLocalDateTime(model.created_at)
+																			),
+																			'yyyy/MM/dd, HH:mm'
+																		)}
+																	</Typography>
+																</Box>
+
+																<Box
+																	sx={{
+																		marginTop: '24px',
+																		display: 'flex',
+																		alignItems: 'center',
+																		gap: 2,
 																	}}
-																/>
-																<StandardButton
-																	value="Deploy in production"
-																	type={
-																		(model.uuid ===
-																			aimodels.productionAIModel?.uuid &&
-																			'disabled') ||
-																		''
-																	}
-																	handleClick={() => {
-																		if (canUpdate) {
-																			if (
-																				aimodels.productionAIModel?.uuid !==
-																				model.uuid
-																			) {
-																				setOpenConfirmProduction(true);
-																				setSelectedModel(model);
-																			}
+																>
+																	<StandardButton
+																		value="Show schema"
+																		handleClick={() => {
+																			setOpenShowSchema(true);
+																			setCurrentSchema(model.task_schema);
+																		}}
+																	/>
+																	<StandardButton
+																		value="Deploy in production"
+																		type={
+																			(model.uuid ===
+																				aimodels.productionAIModel?.uuid &&
+																				'disabled') ||
+																			''
 																		}
-																	}}
-																/>
-																<StandardButton
-																	value="Deploy in testing"
-																	type={
-																		(model.uuid ===
-																			aimodels.testingAIModel?.uuid &&
-																			'disabled') ||
-																		''
-																	}
-																	handleClick={() => {
-																		if (canUpdate) {
-																			if (
-																				aimodels.testingAIModel?.uuid !==
-																				model.uuid
-																			) {
-																				setOpenConfirmTesting(true);
-																				setSelectedModel(model);
+																		handleClick={() => {
+																			if (canUpdate) {
+																				if (
+																					aimodels.productionAIModel?.uuid !==
+																					model.uuid
+																				) {
+																					setOpenConfirmProduction(true);
+																					setSelectedModel(model);
+																				}
 																			}
+																		}}
+																	/>
+																	<StandardButton
+																		value="Deploy in testing"
+																		type={
+																			(model.uuid ===
+																				aimodels.testingAIModel?.uuid &&
+																				'disabled') ||
+																			''
 																		}
-																	}}
-																/>
+																		handleClick={() => {
+																			if (canUpdate) {
+																				if (
+																					aimodels.testingAIModel?.uuid !==
+																					model.uuid
+																				) {
+																					setOpenConfirmTesting(true);
+																					setSelectedModel(model);
+																				}
+																			}
+																		}}
+																	/>
+																</Box>
+															</Box>
+															<Box sx={styles().modelActiveContainer}>
+																{aimodels.productionAIModel?.uuid &&
+																	model.uuid ===
+																		aimodels.productionAIModel.uuid && (
+																		<Box
+																			sx={{
+																				display: 'flex',
+																				alignItems: 'center',
+																				gap: '5px',
+																			}}
+																		>
+																			<CircleIcon
+																				sx={{
+																					color: colors.modelActive,
+																					fontSize: 10,
+																				}}
+																			/>
+																			<Typography
+																				variant="subtitle1"
+																				sx={{ fontSize: 12 }}
+																			>
+																				Production
+																			</Typography>
+																		</Box>
+																	)}
+																{aimodels.testingAIModel?.uuid &&
+																	model.uuid ===
+																		aimodels.testingAIModel.uuid && (
+																		<Box
+																			sx={{
+																				...styles().modelActiveContainer,
+																				display: 'flex',
+																				flexDirection: 'row',
+																				alignItems: 'center',
+																			}}
+																		>
+																			<CircleIcon
+																				sx={{
+																					color: colors.buttonPrimaryColor,
+																					fontSize: 10,
+																				}}
+																			/>
+																			<Typography
+																				variant="subtitle1"
+																				sx={{ fontSize: 12 }}
+																			>
+																				Testing
+																			</Typography>
+																		</Box>
+																	)}
+
+																{model.uuid !==
+																	aimodels.productionAIModel?.uuid &&
+																	model.uuid !==
+																		aimodels.testingAIModel?.uuid && (
+																		<Box
+																			sx={{
+																				...styles().modelActiveContainer,
+																				display: 'flex',
+																				flexDirection: 'row',
+																				alignItems: 'center',
+																			}}
+																		>
+																			<CircleIcon
+																				sx={{
+																					color: colors.errorAlertDark,
+																					fontSize: 10,
+																				}}
+																			/>
+																			<Typography
+																				variant="subtitle1"
+																				sx={{ fontSize: 12 }}
+																			>
+																				Inactive
+																			</Typography>
+																		</Box>
+																	)}
 															</Box>
 														</Box>
-														<Box sx={styles().modelActiveContainer}>
-															{aimodels.productionAIModel?.uuid &&
-																model.uuid ===
-																	aimodels.productionAIModel.uuid && (
-																	<Box
-																		sx={{
-																			display: 'flex',
-																			alignItems: 'center',
-																			gap: '5px',
-																		}}
-																	>
-																		<CircleIcon
-																			sx={{
-																				color: colors.modelActive,
-																				fontSize: 10,
-																			}}
-																		/>
-																		<Typography
-																			variant="subtitle1"
-																			sx={{ fontSize: 12 }}
-																		>
-																			Production
-																		</Typography>
-																	</Box>
-																)}
-															{aimodels.testingAIModel?.uuid &&
-																model.uuid === aimodels.testingAIModel.uuid && (
-																	<Box
-																		sx={{
-																			...styles().modelActiveContainer,
-																			display: 'flex',
-																			flexDirection: 'row',
-																			alignItems: 'center',
-																		}}
-																	>
-																		<CircleIcon
-																			sx={{
-																				color: colors.buttonPrimaryColor,
-																				fontSize: 10,
-																			}}
-																		/>
-																		<Typography
-																			variant="subtitle1"
-																			sx={{ fontSize: 12 }}
-																		>
-																			Testing
-																		</Typography>
-																	</Box>
-																)}
-
-															{model.uuid !==
-																aimodels.productionAIModel?.uuid &&
-																model.uuid !==
-																	aimodels.testingAIModel?.uuid && (
-																	<Box
-																		sx={{
-																			...styles().modelActiveContainer,
-																			display: 'flex',
-																			flexDirection: 'row',
-																			alignItems: 'center',
-																		}}
-																	>
-																		<CircleIcon
-																			sx={{
-																				color: colors.errorAlertDark,
-																				fontSize: 10,
-																			}}
-																		/>
-																		<Typography
-																			variant="subtitle1"
-																			sx={{ fontSize: 12 }}
-																		>
-																			Inactive
-																		</Typography>
-																	</Box>
-																)}
-														</Box>
 													</Box>
-												</Box>
-											)).reverse()
+												))
+												.reverse()
 										) : (
 											<Box
 												key={uuidv4()}

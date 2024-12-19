@@ -9,9 +9,9 @@ import { newLog } from '../services/logger';
 // GET
 
 export const GET_MODELS = createAsyncThunk(
-	'aireleases/GET_MODELS',
+	'aimodels/GET_MODELS',
 	async ({ userState, dispatch, taskId }) => {
-		newLog('aireleases/GET_MODELS');
+		newLog('aimodels/GET_MODELS');
 		const res = await requestFactory({
 			type: 'GET',
 			url: `/tasks/${taskId}/models`,
@@ -23,9 +23,9 @@ export const GET_MODELS = createAsyncThunk(
 );
 
 export const GET_PRODUCTION_MODEL = createAsyncThunk(
-	'aireleases/GET_PRODUCTION_MODELS',
+	'aimodels/GET_PRODUCTION_MODELS',
 	async ({ userState, dispatch, taskId }) => {
-		newLog('aireleases/GET_PRODUCTION_MODELS');
+		newLog('aimodels/GET_PRODUCTION_MODELS');
 		const res = await requestFactory({
 			type: 'GET',
 			url: `/tasks/${taskId}/deployment?environment=production`,
@@ -37,9 +37,9 @@ export const GET_PRODUCTION_MODEL = createAsyncThunk(
 );
 
 export const GET_TESTING_MODEL = createAsyncThunk(
-	'aireleases/GET_TESTING_MODEL',
+	'aimodels/GET_TESTING_MODEL',
 	async ({ userState, dispatch, taskId }) => {
-		newLog('aireleases/GET_TESTING_MODEL');
+		newLog('aimodels/GET_TESTING_MODEL');
 		const res = await requestFactory({
 			type: 'GET',
 			url: `/tasks/${taskId}/deployment?environment=testing`,
@@ -53,9 +53,9 @@ export const GET_TESTING_MODEL = createAsyncThunk(
 // POST
 
 export const SET_PRODUCTION_MODEL = createAsyncThunk(
-	'aireleases/SET_PRODUCTION_MODEL',
+	'aimodels/SET_PRODUCTION_MODEL',
 	async ({ userState, dispatch, taskId, modelId }) => {
-		newLog('aireleases/SET_PRODUCTION_MODEL');
+		newLog('aimodels/SET_PRODUCTION_MODEL');
 		const res = await requestFactory({
 			type: 'POST',
 			url: `/tasks/${taskId}/deployment`,
@@ -68,9 +68,9 @@ export const SET_PRODUCTION_MODEL = createAsyncThunk(
 );
 
 export const SET_TESTING_MODEL = createAsyncThunk(
-	'aireleases/SET_TESTING_MODEL',
+	'aimodels/SET_TESTING_MODEL',
 	async ({ userState, dispatch, taskId, modelId }) => {
-		newLog('aireleases/SET_TESTING_MODEL');
+		newLog('aimodels/SET_TESTING_MODEL');
 		const res = await requestFactory({
 			type: 'POST',
 			url: `/tasks/${taskId}/deployment`,
@@ -82,13 +82,13 @@ export const SET_TESTING_MODEL = createAsyncThunk(
 	}
 );
 
-export const aiReleasesSlice = createSlice({
-	name: 'aiReleases',
+export const aimodelsSlice = createSlice({
+	name: 'aimodels',
 	initialState: {
 		isLoading: true,
-		AIReleases: [],
-		testingAIRelease: {},
-		productionAIRelease: {},
+		aimodels: [],
+		testingAIModel: {},
+		productionAIModel: {},
 	},
 	reducers: {},
 	extraReducers: (builder) => {
@@ -99,7 +99,7 @@ export const aiReleasesSlice = createSlice({
 		});
 		builder.addCase(GET_MODELS.fulfilled, (state, { payload }) => {
 			state.isLoading = false;
-			state.AIReleases = payload;
+			state.aimodels = payload;
 		});
 		builder.addCase(GET_MODELS.rejected, (state) => {
 			state.isLoading = true;
@@ -110,7 +110,7 @@ export const aiReleasesSlice = createSlice({
 		});
 		builder.addCase(GET_TESTING_MODEL.fulfilled, (state, { payload }) => {
 			state.isLoading = false;
-			if (payload) state.testingAIRelease = payload;
+			if (payload) state.testingAIModel = payload;
 		});
 		builder.addCase(GET_TESTING_MODEL.rejected, (state) => {
 			state.isLoading = true;
@@ -121,7 +121,7 @@ export const aiReleasesSlice = createSlice({
 		});
 		builder.addCase(GET_PRODUCTION_MODEL.fulfilled, (state, { payload }) => {
 			state.isLoading = false;
-			if (payload) state.productionAIRelease = payload;
+			if (payload) state.productionAIModel = payload;
 		});
 		builder.addCase(GET_PRODUCTION_MODEL.rejected, (state) => {
 			state.isLoading = true;
@@ -132,4 +132,4 @@ export const aiReleasesSlice = createSlice({
 // Action creators are generated for each case reducer function
 // export const {} = userSlice.actions;
 
-export default aiReleasesSlice.reducer;
+export default aimodelsSlice.reducer;

@@ -364,7 +364,7 @@ export const getRows = ({
 					...tmpRowData,
 					id: prediction.uuid || prediction.id,
 					aimodel:
-						aimodels?.AIModels?.find(
+						aimodels?.aimodels?.find(
 							(model) => model.id === prediction.ai_model
 						)?.version || '',
 				};
