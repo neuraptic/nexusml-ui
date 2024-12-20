@@ -1,0 +1,143 @@
+/*Input style*/
+.common_input_type input {
+	background: #fafbfd !important;
+	border: 1px solid #70707045 !important;
+	border-radius: 3px !important;
+	padding: 12px 11px !important;
+	max-width: 100% !important;
+	letter-spacing: 0.17px !important;
+	color: #1a1c21 !important;
+	font-size: 14px !important;
+}
+.common_input_type::after,
+.common_input_type::before {
+	content: none !important;
+}
+.common_input_type input:hover,
+.common_input_type input:active,
+.common_input_type input:focus,
+.common_input_type input:focus-visible {
+	border-color: #1492e6 !important;
+}
+/*Input style*/
+
+/*Select style*/
+.common_select_type select {
+	border: 1px solid #70707045 !important;
+	border-radius: 3px !important;
+	padding: 7px 11px !important;
+	max-width: 100% !important;
+	letter-spacing: 0.17px !important;
+	color: #1a1c21 !important;
+	font-size: 14px !important;
+}
+.common_select_type .MuiOutlinedInput-notchedOutline {
+	border: 1px solid #70707045 !important;
+}
+.common_select_type:hover {
+	border-color: #1492e6 !important;
+}
+/*Select style*/
+
+.common_textarea_type {
+	background: #fafbfd;
+	border: 1px solid #70707045;
+	border-radius: 3px;
+	width: 70%;
+	min-height: 87px;
+	letter-spacing: 0.17px;
+	color: #1a1c21;
+	padding: 10px;
+	resize: none;
+	font-size: 14px;
+	font-family: 'roboto';
+}
+
+.common_textarea_type::placeholder {
+	letter-spacing: 0.17px;
+	color: rgba(26, 28, 33, 0.64);
+	font-size: 14px;
+	font-family: 'roboto';
+}
+
+.common_textarea_type:hover,
+.common_textarea_type:active,
+.common_textarea_type:focus,
+.common_textarea_type:focus-visible {
+	border-color: #1492e6 !important;
+	outline: none !important;
+}
+
+.common_input_type fieldset {
+	border-color: #70707045 !important;
+}
+
+.MuiModal-root .common_input_type {
+	max-width: 344px;
+}
+
+.common_input_type:hover fieldset,
+.common_select_type:hover fieldset {
+	border-color: #1492e6 !important;
+}
+
+.common_select_type .MuiOutlinedInput-root .MuiSelect-select {
+	padding: 7px 11px !important;
+}
+
+.common_select_type label.MuiFormLabel-root {
+	top: -7px;
+	font-size: 14px;
+}
+.common_select_type label.MuiFormLabel-root.Mui-focused {
+	top: 0px !important;
+}
+
+.cancel_btn {
+	background: #f8d2d2 !important;
+	letter-spacing: 0.13px !important;
+	color: #dc1212 !important;
+	border-radius: 9px !important;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06) !important;
+	font-size: 13px !important;
+	padding: 8px 20px !important;
+	text-transform: none !important;
+}
+
+.cancel_btn:hover {
+	background: #dc1212 !important;
+	color: #fff !important;
+}
+
+.create_btn {
+	color: #1492e6 !important;
+	width: fit-content !important;
+	padding: 8px 20px !important;
+	font-size: 13px !important;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06) !important;
+	border-radius: 9px !important;
+	letter-spacing: 0.15px !important;
+	text-transform: none !important;
+	background-color: #d3eafa !important;
+}
+.label_text {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.label_text span {
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	font-size: 13px !important;
+}
+
+.category_color_container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.color_generate_btn {
+	border: 1px solid #f0f0f0;
+	border-radius: 6px;
+}
