@@ -223,7 +223,16 @@ export const CreateOrUpdateExampleModal = (props) => {
 			})
 		);
 
-		handleUpdateExample();
+		if (currentExampleState.id) handleUpdateExample();
+		else
+			setManualExample({
+				...manualExample,
+				tags:
+					manualExample.tags.length > 0
+						? [...manualExample.tags, tag.name]
+						: [tag.name],
+			});
+		setOpenCreateTagMenu(false);
 	};
 
 	const handleReturnMainMenu = () => {

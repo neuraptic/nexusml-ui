@@ -287,57 +287,13 @@ export const schemaSlice = createSlice({
 		[GET_SCHEMA.fulfilled]: (state, { payload }) => {
 			state.isLoading = false;
 			state.schema = payload;
-			if (payload.inputs) state.inputs = payload.inputs;
-			if (payload.outputs) state.outputs = payload.outputs;
-			if (payload.metadata) state.metadata = payload.metadata;
+			if (payload?.inputs) state.inputs = payload.inputs;
+			if (payload?.outputs) state.outputs = payload.outputs;
+			if (payload?.metadata) state.metadata = payload.metadata;
 		},
 		[GET_SCHEMA.rejected]: (state) => {
 			state.isLoading = false;
 		},
-
-		// [GET_SCHEMA_GROUPS.pending]: (state) => {
-		// 	state.isLoading = true;
-		// },
-		// [GET_SCHEMA_GROUPS.fulfilled]: (state, { payload }) => {
-		// 	state.isLoading = false;
-		// 	state.groups = payload;
-		// },
-		// [GET_SCHEMA_GROUPS.rejected]: (state) => {
-		// 	state.isLoading = false;
-		// },
-
-		// [GET_SCHEMA_INPUTS.pending]: (state) => {
-		// 	state.isLoading = true;
-		// },
-		// [GET_SCHEMA_INPUTS.fulfilled]: (state, { payload }) => {
-		// 	state.isLoading = false;
-		// 	state.inputs = payload;
-		// },
-		// [GET_SCHEMA_INPUTS.rejected]: (state) => {
-		// 	state.isLoading = false;
-		// },
-
-		// [GET_SCHEMA_OUTPUTS.pending]: (state) => {
-		// 	state.isLoading = true;
-		// },
-		// [GET_SCHEMA_OUTPUTS.fulfilled]: (state, { payload }) => {
-		// 	state.isLoading = false;
-		// 	state.targets = payload;
-		// },
-		// [GET_SCHEMA_OUTPUTS.rejected]: (state) => {
-		// 	state.isLoading = false;
-		// },
-
-		// [GET_SCHEMA_METADATA.pending]: (state) => {
-		// 	state.isLoading = true;
-		// },
-		// [GET_SCHEMA_METADATA.fulfilled]: (state, { payload }) => {
-		// 	state.isLoading = false;
-		// 	state.metadata = payload;
-		// },
-		// [GET_SCHEMA_METADATA.rejected]: (state) => {
-		// 	state.isLoading = false;
-		// },
 
 		[GET_SCHEMA_NODE_CATEGORIES.pending]: (state) => {
 			state.isLoading = true;

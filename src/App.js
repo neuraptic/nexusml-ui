@@ -28,7 +28,6 @@ import {
 	SET_USER_LOCATION,
 	GET_USER_SETTINGS,
 	SET_IS_NEW_USER,
-	SET_DEFAULT_API_KEY_ENABLED,
 } from './redux/user.slice';
 import {
 	GET_ORGANIZATION,
@@ -92,8 +91,6 @@ const theme = createTheme({
 	},
 });
 
-// Contexts
-
 const App = ({ routerConfig = {} }) => {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -126,6 +123,7 @@ const App = ({ routerConfig = {} }) => {
 	const { examples: examplesState } = useSelector((state) => state.examples);
 
 	// Local states
+	const [authEnabled, setAuthEnabled] = useState(true);
 	const [isPermifySettedUp, setIsPermifySettedUp] = useState(false);
 	const [isTopMenu, setIsTopMenu] = useState(false);
 	const [currentLocation, setCurrentLocation] = useState('');
@@ -137,32 +135,13 @@ const App = ({ routerConfig = {} }) => {
 	}, [window.localStorage.getItem('__permifyUser')]);
 
 	const getToken = async () => {
-		if (userState.defaultAPIKeyEnabled) {
+		if (process.env.NEXUSML_UI_AUTH_ENABLED === 'false') {
 			dispatch(SET_ACCESS_TOKEN('none'));
 		} else {
 			const token = await getAccessTokenSilently().catch(() => {
 				if (currentLocation !== 'signin') navigate('/signin');
 			});
 			if (token) dispatch(SET_ACCESS_TOKEN(token));
-		}
-	};
-
-	const checkIsAuth0Enabled = async () => {
-		const res = await fetch(`${process.env.NEXUSML_UI_API_URL}/config`, {
-			method: 'get',
-		});
-
-		if (res) {
-			dispatch(
-				SET_DEFAULT_API_KEY_ENABLED({
-					enabled: res.enabled,
-					default_api_key: res.default_api_key,
-				})
-			);
-		}
-
-		if (res.status !== 200) {
-			getToken();
 		}
 	};
 
@@ -175,9 +154,12 @@ const App = ({ routerConfig = {} }) => {
 		if (!localStorage.getItem('oldTaskId')) {
 			localStorage.setItem('oldTaskId', '');
 		}
-		getToken();
 
-		checkIsAuth0Enabled();
+		if (process.env.NEXUSML_UI_AUTH_ENABLED === 'true') {
+			getToken();
+		} else {
+			setAuthEnabled(false);
+		}
 	}, []);
 
 	useEffect(() => {
@@ -195,13 +177,20 @@ const App = ({ routerConfig = {} }) => {
 		if (accessToken) {
 			const decodedToken = jwtDecode(accessToken, { header: false });
 			dispatch(SET_IS_NEW_USER(decodedToken?.isNew));
-			if (isAuthenticated || userState.defaultAPIKeyEnabled) {
+			if (isAuthenticated) {
 				getUserAndOrganization();
 			}
 		}
 	}, [isAuthenticated, accessToken]);
 
 	useEffect(() => {
+		if (!authEnabled) {
+			setUserAccess({
+				id: userState.id,
+				roles: ['admin'],
+				permissions: ['*'],
+			});
+		}
 		const tmpRoles = () => {
 			const tmp = [];
 			if (userState.roles.some((role) => role.name === 'admin'))
@@ -231,6 +220,7 @@ const App = ({ routerConfig = {} }) => {
 		userState.roles,
 		organizationState,
 		localStorage.getItem('__permifyUser'),
+		authEnabled,
 	]);
 
 	useEffect(() => {
@@ -300,14 +290,17 @@ const App = ({ routerConfig = {} }) => {
 
 	useEffect(() => {
 		if (
-			tasksState.length === 0 &&
-			userState &&
-			userState.id &&
-			userState.permissions.length > 0 &&
-			isPermifySettedUp
-		)
+			(tasksState.length === 0 &&
+				userState &&
+				userState.id &&
+				userState.permissions.length > 0 &&
+				isPermifySettedUp) ||
+			authEnabled
+		) {
+			dispatch(APP_IS_LOADING(false));
 			dispatch(GET_TASKS({ userState, dispatch }));
-	}, [userState, isPermifySettedUp]);
+		}
+	}, [userState, isPermifySettedUp, authEnabled]);
 
 	const getCurrentTask = async () => {
 		// SCHEMA REQUESTS
@@ -396,14 +389,15 @@ const App = ({ routerConfig = {} }) => {
 
 	useEffect(() => {
 		if (
-			accessToken !== '' &&
-			userState.id !== '' &&
-			isAuthenticated &&
-			((currentTaskState &&
-				currentTaskState.uuid &&
-				localStorage.getItem('currentTaskId') !==
-					localStorage.getItem('oldTaskId')) ||
-				examplesState.length === 0)
+			(accessToken !== '' &&
+				userState.id !== '' &&
+				isAuthenticated &&
+				((currentTaskState &&
+					currentTaskState.uuid &&
+					localStorage.getItem('currentTaskId') !==
+						localStorage.getItem('oldTaskId')) ||
+					examplesState.length === 0)) ||
+			!authEnabled
 		) {
 			getCurrentTask();
 			dispatch(RESET_ALL_CATEGORIES());
@@ -484,21 +478,20 @@ const App = ({ routerConfig = {} }) => {
 	}, [isTopMenu, windowSize]);
 
 	useEffect(() => {
-		if (process.env.NEXUSML_UI_DEFAULT_API_KEY_ENABLED) {
-			navigate('/dashboard');
-			return;
-		}
-		if (isAuthenticated && currentLocation === 'signin') {
-			dispatch(APP_IS_LOADING(true));
-			if (organizationState.info?.id) {
-				navigate('/dashboard');
-				dispatch(APP_IS_LOADING(false));
+		dispatch(APP_IS_LOADING(true));
+		if (!authEnabled) {
+			if (currentLocation === 'signin') navigate('/dashboard');
+		} else {
+			if (isAuthenticated && currentLocation === 'signin') {
+				if (organizationState.info?.id) {
+					navigate('/dashboard');
+				}
+			}
+			if (!isAuthenticated && !auth0IsLoading) {
+				navigate('/signin');
 			}
 		}
-		if (!isAuthenticated && !auth0IsLoading) {
-			navigate('/signin');
-			dispatch(APP_IS_LOADING(false));
-		}
+		dispatch(APP_IS_LOADING(false));
 	}, [isAuthenticated, auth0IsLoading, userState]);
 
 	const handleSignOut = () => {
@@ -545,18 +538,19 @@ const App = ({ routerConfig = {} }) => {
 					/>
 				}
 			>
-				{isAuthenticated &&
+				{((isAuthenticated &&
 					currentLocation !== 'create-organization' &&
 					currentLocation !== 'complete-profile' &&
-					currentLocation !== 'signin' && (
-						<>
-							<TopMenu
-								handleSignOut={handleSignOut}
-								setIsTopMenu={setIsTopMenu}
-							/>
-							<Navigation />
-						</>
-					)}
+					currentLocation !== 'signin') ||
+					!authEnabled) && (
+					<>
+						<TopMenu
+							handleSignOut={handleSignOut}
+							setIsTopMenu={setIsTopMenu}
+						/>
+						<Navigation />
+					</>
+				)}
 				<AlertsManager />
 				<CssBaseline />
 				<AppRouter

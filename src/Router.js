@@ -64,11 +64,12 @@ const AppRouter = ({ isAuthenticated, routerConfig, setIsTopMenu }) => {
 	const defaultRoutes = [
 		{
 			path: '*',
-			element: isAuthenticated ? (
-				<Navigate replace to="/dashboard" />
-			) : (
-				<Navigate replace to="/signin" />
-			),
+			element:
+				isAuthenticated || process.env.NEXUSML_UI_AUTH_ENABLED === 'false' ? (
+					<Navigate replace to="/dashboard" />
+				) : (
+					<Navigate replace to="/signin" />
+				),
 		},
 		{ path: '/signin', element: <SignIn /> },
 		{ path: '/complete-profile', element: <CompleteProfile /> },

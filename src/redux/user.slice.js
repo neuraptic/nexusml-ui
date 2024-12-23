@@ -111,7 +111,6 @@ export const userSliceConfig = {
 		permissions: [],
 		roles: [],
 		isVerified: true,
-		defaultAPIKeyEnabled: false,
 	},
 	reducers: {
 		SET_ACCESS_TOKEN: (state, { payload }) => {
@@ -131,11 +130,6 @@ export const userSliceConfig = {
 			newLog('user/SET_USER_INFO');
 			state.first_name = payload.first_name;
 			state.last_name = payload.last_name;
-		},
-		SET_DEFAULT_API_KEY_ENABLED: (state, { payload }) => {
-			newLog('user/SET_DEFAULT_API_KEY_ENABLED');
-			state.accessToken = payload.default_api_key;
-			state.defaultAPIKeyEnabled = payload.enabled;
 		},
 	},
 	extraReducers: (builder) => {
@@ -217,7 +211,6 @@ export const {
 	SET_ACCESS_TOKEN,
 	SET_USER_LOCATION,
 	SET_USER_INFO,
-	SET_DEFAULT_API_KEY_ENABLED,
 } = userSlice.actions;
 
 export default userSlice.reducer;

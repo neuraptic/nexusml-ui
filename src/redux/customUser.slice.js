@@ -44,7 +44,7 @@ export const {
 	SET_ACCESS_TOKEN,
 	SET_USER_LOCATION,
 	SET_USER_INFO,
-	SET_DEFAULT_API_KEY_ENABLED,
+	SET_AUTH_ENABLED,
 } = customUserSlice.actions;
 
 export default customUserSlice.reducer;

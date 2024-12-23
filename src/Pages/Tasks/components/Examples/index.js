@@ -133,7 +133,7 @@ export const TaskExamples = () => {
 	useEffect(() => {
 		if (
 			currentTaskState.uuid &&
-			accessToken &&
+			(accessToken || process.env.NEXUSML_UI_AUTH_ENABLED === 'false') &&
 			!examplesState.isLoading &&
 			filters.query.split('=')[1] !== ''
 		)
@@ -372,7 +372,10 @@ export const TaskExamples = () => {
 	}, [openEditElementModal]);
 
 	useEffect(() => {
-		if (accessToken && currentTaskState.uuid) {
+		if (
+			(accessToken || process.env.NEXUSML_UI_AUTH_ENABLED === 'false') &&
+			currentTaskState.uuid
+		) {
 			getColumns({
 				setAllColumns,
 				classes: styles(),
@@ -444,7 +447,10 @@ export const TaskExamples = () => {
 	};
 
 	useEffect(() => {
-		if (accessToken && currentTaskState.uuid) {
+		if (
+			(accessToken || process.env.NEXUSML_UI_AUTH_ENABLED === 'false') &&
+			currentTaskState.uuid
+		) {
 			getExamplesWithFilters();
 		}
 	}, [page, rowsPerPage]);

@@ -62,7 +62,6 @@ export const AITestingTable = (props) => {
 	}
 
 	return (
-		schemaState?.inputs &&
 		currentColumns &&
 		currentColumns.length > 0 && (
 			<DataGridPro

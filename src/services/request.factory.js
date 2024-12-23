@@ -10,7 +10,7 @@ const requestFactory = async (props) => {
 
 	let res = null;
 
-	if (userState?.defaultAPIKeyEnabled) {
+	if (process.env.NEXUSML_UI_AUTH_ENABLED === 'true') {
 		res = await fetch(`${process.env.NEXUSML_UI_API_URL}${url}`, {
 			method: type,
 			headers: {
@@ -25,7 +25,6 @@ const requestFactory = async (props) => {
 		res = await fetch(`${process.env.NEXUSML_UI_API_URL}${url}`, {
 			method: type,
 			headers: {
-				Authorization: `Bearer ${userState.accessToken}`,
 				'content-type': 'application/json',
 				cors: 'no-cors',
 			},

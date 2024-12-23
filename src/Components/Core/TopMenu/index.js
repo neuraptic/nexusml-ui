@@ -131,13 +131,15 @@ function TopMenu(props) {
 							}}
 						>
 							{(organizationInfoState !== null &&
-								organizationInfoState.name) || (
-								<Skeleton
-									animation="wave"
-									variant="text"
-									style={{ height: '24px', width: '150px' }}
-								/>
-							)}
+								process.env.NEXUSML_UI_AUTH_ENABLED === 'true' &&
+								organizationInfoState.name) ||
+								'Testing Inc.' || (
+									<Skeleton
+										animation="wave"
+										variant="text"
+										style={{ height: '24px', width: '150px' }}
+									/>
+								)}
 						</Box>
 					</div>
 				</Grid>
@@ -155,21 +157,25 @@ function TopMenu(props) {
 						paddingTop: '12px',
 					}}
 				>
-					<IconButton onClick={() => navigate('/settings/user')}>
-						<CustomTooltip title="My Account">
-							<PersonIcon color="action" />
-						</CustomTooltip>
-					</IconButton>
-					<IconButton onClick={() => navigate('/settings/organization')}>
-						<CustomTooltip title="Organization">
-							<ApartmentRoundedIcon color="action" />
-						</CustomTooltip>
-					</IconButton>
-					<IconButton onClick={() => handleSignOut()}>
-						<CustomTooltip title="Logout">
-							<ExitToAppIcon color="action" />
-						</CustomTooltip>
-					</IconButton>
+					{process.env.NEXUSML_UI_AUTH_ENABLED === 'true' && (
+						<>
+							<IconButton onClick={() => navigate('/settings/user')}>
+								<CustomTooltip title="My Account">
+									<PersonIcon color="action" />
+								</CustomTooltip>
+							</IconButton>
+							<IconButton onClick={() => navigate('/settings/organization')}>
+								<CustomTooltip title="Organization">
+									<ApartmentRoundedIcon color="action" />
+								</CustomTooltip>
+							</IconButton>
+							<IconButton onClick={() => handleSignOut()}>
+								<CustomTooltip title="Logout">
+									<ExitToAppIcon color="action" />
+								</CustomTooltip>
+							</IconButton>
+						</>
+					)}
 				</Grid>
 			</Grid>
 		</ThemeProvider>

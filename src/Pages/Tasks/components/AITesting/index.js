@@ -124,7 +124,7 @@ export const TaskAITesting = () => {
 	useEffect(() => {
 		if (
 			currentTaskState.uuid &&
-			accessToken &&
+			(accessToken || process.env.NEXUSML_UI_AUTH_ENABLED === 'false') &&
 			!testsState.isLoading &&
 			filters.query.split('=')[1] !== ''
 		)
@@ -132,7 +132,10 @@ export const TaskAITesting = () => {
 	}, [filters]);
 
 	useEffect(() => {
-		if (accessToken && currentTaskState.uuid) {
+		if (
+			(accessToken || process.env.NEXUSML_UI_AUTH_ENABLED === 'false') &&
+			currentTaskState.uuid
+		) {
 			getTestsWithFilters();
 		}
 	}, [page, rowsPerPage]);
@@ -283,7 +286,7 @@ export const TaskAITesting = () => {
 	useEffect(() => {
 		if (
 			!imagesBufferState.imagesBufferIsLoading &&
-			accessToken &&
+			(accessToken || process.env.NEXUSML_UI_AUTH_ENABLED === 'false') &&
 			currentTaskState.uuid
 		) {
 			getColumns({
