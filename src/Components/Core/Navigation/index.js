@@ -24,7 +24,7 @@ function Navigation() {
 	// Local states
 	const { tasks: tasksState } = useSelector((state) => state.tasks);
 
-	const tasksIds = tasksState.map((task) => task.uuid);
+	const tasksIds = tasksState?.map((task) => task.uuid);
 
 	const getLinkUrl = (element) => {
 		const index = navigationArray.indexOf(element);

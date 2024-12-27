@@ -107,7 +107,7 @@ const AppRouter = ({ isAuthenticated, routerConfig, setIsTopMenu }) => {
 	}, [routerConfig]);
 
 	const renderRoutes = (routes) =>
-		routes.map((route, index) => {
+		routes?.map((route, index) => {
 			if (route.children) {
 				return (
 					<Route key={index} path={route.path} element={route.element}>

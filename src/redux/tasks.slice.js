@@ -184,9 +184,10 @@ export const tasksSlice = createSlice({
 		builder.addCase(GET_TASKS.fulfilled, (state, { payload }) => {
 			state.isLoading = false;
 
-			state.tasks = payload.sort(
-				(a, b) => new Date(b.modified_at) - new Date(a.modified_at)
-			);
+			state.tasks =
+				payload?.sort(
+					(a, b) => new Date(b.modified_at) - new Date(a.modified_at)
+				) || [];
 		});
 		builder.addCase(GET_TASKS.rejected, (state) => {
 			state.isLoading = false;

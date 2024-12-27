@@ -188,7 +188,7 @@ const App = ({ routerConfig = {} }) => {
 			setUserAccess({
 				id: userState.id,
 				roles: ['admin'],
-				permissions: ['*'],
+				permissions: process.env.NEXUSML_UI_AUTH0_SCOPE.split(' '),
 			});
 		}
 		const tmpRoles = () => {
@@ -295,7 +295,7 @@ const App = ({ routerConfig = {} }) => {
 				userState.id &&
 				userState.permissions.length > 0 &&
 				isPermifySettedUp) ||
-			authEnabled
+			!authEnabled
 		) {
 			dispatch(APP_IS_LOADING(false));
 			dispatch(GET_TASKS({ userState, dispatch }));
@@ -518,26 +518,12 @@ const App = ({ routerConfig = {} }) => {
 		);
 
 	if (auth0IsLoading || authIsLoading || appIsLoading) {
-		return (
-			<Loader
-				size="L"
-				isAuthenticated={isAuthenticated}
-				currentLocation={currentLocation}
-			/>
-		);
+		return <Loader size="L" />;
 	}
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Suspense
-				fallback={
-					<Loader
-						size="L"
-						isAuthenticated={isAuthenticated}
-						currentLocation={currentLocation}
-					/>
-				}
-			>
+			<Suspense fallback={<Loader size="L" />}>
 				{((isAuthenticated &&
 					currentLocation !== 'create-organization' &&
 					currentLocation !== 'complete-profile' &&

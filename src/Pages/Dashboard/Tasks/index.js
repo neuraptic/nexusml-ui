@@ -93,12 +93,12 @@ function Tasks() {
 			>
 				<Grid container spacing={2} sx={styles().tasksContainer}>
 					{dashboardLoaderManager.tasks &&
-						[...Array(rowsPerPage)].map((e, i) => (
+						[...Array(rowsPerPage)]?.map((e, i) => (
 							<Grid key={i} item xs={12} sm={6} md={4} lg={4} xl={3}>
 								<TaskCardSkeleton />
 							</Grid>
 						))}
-					{shownTasks.map((task) => (
+					{shownTasks?.map((task) => (
 						<Grid
 							item
 							xs={12}
@@ -147,7 +147,7 @@ function Tasks() {
 
 			{moreTasksLoading && (
 				<Grid container spacing={2} sx={styles().tasksContainer}>
-					{[...Array(rowsPerPage)].map((e, i) => (
+					{[...Array(rowsPerPage)]?.map((e, i) => (
 						<Grid key={i} item xs={12} sm={6} md={4} lg={4} xl={3}>
 							<TaskCardSkeleton />
 						</Grid>

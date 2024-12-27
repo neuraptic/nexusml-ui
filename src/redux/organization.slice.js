@@ -545,7 +545,7 @@ export const organizationSlice = createSlice({
 		});
 		builder.addCase(GET_ORGANIZATION.fulfilled, (state, { payload }) => {
 			state.isLoading = false;
-			state.info = payload;
+			state.info = payload || {};
 		});
 		builder.addCase(GET_ORGANIZATION.rejected, (state) => {
 			state.isLoading = true;
@@ -557,8 +557,8 @@ export const organizationSlice = createSlice({
 		builder.addCase(GET_ORGANIZATION_USERS.fulfilled, (state, { payload }) => {
 			state.usersIsLoading = false;
 			const [users, totalCount] = payload;
-			state.users.displayedUsers = users;
-			state.users.totalUsers = totalCount;
+			state.users.displayedUsers = users || [];
+			state.users.totalUsers = totalCount || [];
 		});
 		builder.addCase(GET_ORGANIZATION_USERS.rejected, (state) => {
 			state.usersIsLoading = true;
@@ -571,7 +571,7 @@ export const organizationSlice = createSlice({
 			GET_ORGANIZATION_SUBSCRIPTION.fulfilled,
 			(state, { payload }) => {
 				state.isLoading = false;
-				state.subscription = payload;
+				state.subscription = payload || {};
 			}
 		);
 		builder.addCase(GET_ORGANIZATION_SUBSCRIPTION.rejected, (state) => {
@@ -585,9 +585,9 @@ export const organizationSlice = createSlice({
 			GET_ORGANIZATION_COLLABORATORS.fulfilled,
 			(state, { payload }) => {
 				state.collaboratorsIsLoading = false;
-				const [collaborators, totalCount] = payload;
-				state.collaborators.displayedCollaborators = collaborators;
-				state.collaborators.totalCollaborators = totalCount;
+				const [collaborators, totalCount] = payload || [];
+				state.collaborators.displayedCollaborators = collaborators || [];
+				state.collaborators.totalCollaborators = totalCount || [];
 			}
 		);
 		builder.addCase(GET_ORGANIZATION_COLLABORATORS.rejected, (state) => {
@@ -599,7 +599,7 @@ export const organizationSlice = createSlice({
 		});
 		builder.addCase(GET_ORGANIZATION_ROLES.fulfilled, (state, { payload }) => {
 			state.rolesIsLoading = false;
-			state.roles = payload;
+			state.roles = payload || [];
 		});
 		builder.addCase(GET_ORGANIZATION_ROLES.rejected, (state) => {
 			state.rolesIsLoading = true;
@@ -610,7 +610,7 @@ export const organizationSlice = createSlice({
 		});
 		builder.addCase(GET_ORGANIZATION_APPS.fulfilled, (state, { payload }) => {
 			state.appsIsLoading = false;
-			if (payload) state.apps = payload;
+			if (payload) state.apps = payload || [];
 		});
 		builder.addCase(GET_ORGANIZATION_APPS.rejected, (state) => {
 			state.appsIsLoading = true;
@@ -624,7 +624,7 @@ export const organizationSlice = createSlice({
 		builder.addCase(
 			UPDATE_ORGANIZATION_INFO.fulfilled,
 			(state, { payload }) => {
-				state.info = payload;
+				state.info = payload || {};
 			}
 		);
 		builder.addCase(UPDATE_ORGANIZATION_INFO.rejected, (state) => {
