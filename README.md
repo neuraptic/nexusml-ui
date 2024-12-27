@@ -46,7 +46,7 @@ For further assistance, please refer to the [Material UI documentation](https://
 
 Here is the list of required environment variables:
 
-> ⚠️ **Warning:** There are three environment setups (```.env.local```, ```.env.dev```, and ```.env.prod```) to ensure smooth deployment and proper configuration across different stages of development. Remember to update the package.json scripts to match your ```.env``` configuration.
+> ⚠️ **Warning:** There are three environment setups (```.env.local```, ```.env.development```, and ```.env.production```) to ensure smooth deployment and proper configuration across different stages of development. Remember to update the package.json scripts to match your ```.env``` configuration.
 
 ```
 NEXUSML_UI_NAME='APP name'
@@ -91,9 +91,9 @@ npm install
 Once you have all set, you can start the app:
 
 ```
-npm start
-npm start-dev
-npm start-prod
+npm run start
+npm run start-dev
+npm run start-prod
 ```
 
 or create a new build for the required environment:
