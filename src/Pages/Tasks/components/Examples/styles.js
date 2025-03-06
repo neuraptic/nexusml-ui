@@ -1,0 +1,107 @@
+import { dataTypeToColorMap } from '../../../../consts/dataTypeToColorMap';
+
+const styles = () => ({
+	tableContainer: {
+		height: '500px',
+	},
+	editTable: {
+		width: '100%',
+		display: 'flex',
+	},
+	examplesFound: {
+		display: 'flex',
+		gap: 6,
+		alignItems: 'center',
+		justifyContent: 'left',
+	},
+	examplesFoundTitle: {
+		p: '6px',
+		textAlign: 'center',
+		borderRadius: '4px',
+		fontSize: '13px',
+		fontWeight: 600,
+		letterSpacing: '0.14px',
+		color: '#1492E6',
+	},
+	examplesFoundCount: {
+		letterSpacing: '0.14px',
+		color: '#545454',
+		opacity: '0.52',
+		fontSize: '13px',
+		fontWeight: 600,
+	},
+	tableButtons: {
+		width: '30%',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'right',
+		gap: 12,
+	},
+	rowCell: {
+		display: 'block',
+		letterSpacing: '0.13px',
+		fontSize: '13px !important',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+	},
+	highlight: {
+		backgroundColor: '#ecc85c',
+	},
+
+	// Custom cells
+	GenericFile: {},
+	ImageFile: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		'& > *:firstChild': {
+			width: '100%',
+			height: '100%',
+			backgroundPosition: 'center center',
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: 'cover',
+		},
+	},
+	Char: {},
+	JSON: {},
+	GenericIPAddress: {},
+	URL: {},
+	AudioFile: {},
+	VideoFile: {},
+	Text: {},
+	Email: {},
+	Integer: {},
+	Float: {},
+	SmallInteger: {},
+	BigInteger: {},
+	Binary: {},
+	Slug: {},
+	Decimal: {},
+	PositiveBigInteger: {},
+	PositiveInteger: {},
+	PositiveSmallInteger: {},
+	Boolean: {},
+	Category: {},
+	Date: {},
+	DateTime: {},
+	Time: {},
+	Duration: {},
+	Shape: {},
+	null: {},
+	undefined: {},
+
+	cross: {
+		position: 'absolute',
+		top: 14,
+		left: 14,
+		width: '15px',
+		height: '15px',
+		stroke: dataTypeToColorMap['input'],
+		transform: 'rotate(45deg)',
+		backgroundColor: 'white',
+		padding: '3px',
+		borderRadius: '50%',
+	},
+});
+
+export default styles;

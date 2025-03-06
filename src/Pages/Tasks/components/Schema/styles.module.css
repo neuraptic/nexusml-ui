@@ -1,0 +1,87 @@
+.schema_card_block {
+	padding: 0px !important;
+	border-radius: 9px !important;
+}
+.schema_input_options {
+	width: 144px;
+	height: 100%;
+	border-right: 1px solid #eee;
+	display: flex;
+	padding-top: 30px;
+}
+.schema_input_options button {
+	padding: 8px 20px;
+	display: flex;
+	align-items: center;
+	border-radius: 0 !important;
+	cursor: pointer;
+}
+.schema_input_options button:hover {
+	background: #f5f5f5 !important;
+	outline: none !important;
+}
+.schema_drag_block {
+	width: calc(100% - 144px);
+	max-width: calc(100% - 144px);
+	height: 100%;
+	padding: 30px 10px 0 10px;
+}
+.schema_drag_block button {
+	width: auto;
+	padding: 0;
+	margin: 0;
+	min-width: auto;
+	height: auto;
+	min-height: auto;
+	border: none;
+	text-align: left;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+.schema_drag_block button:hover {
+	outline: none !important;
+	background: transparent !important;
+	border: none !important;
+}
+.schema_edit_options {
+	width: 20px !important;
+	height: 20px !important;
+	border-radius: 50% !important;
+	margin: 0 2px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+.schema_drag_block .schema_edit_options:hover {
+	background: #eee !important;
+}
+.schema_edit_options svg {
+	width: 16px !important;
+	height: 16px !important;
+}
+.schema_drag_listing {
+	margin-bottom: 14px;
+	padding: 5px;
+	overflow: auto;
+	max-height: calc(100% - 50px);
+	width: 100%;
+}
+.remove_shadow {
+	box-shadow: none !important;
+}
+.Delete_modal {
+	padding: 15px 28px 30px 28px !important;
+	border-radius: 9px !important;
+	box-shadow: 0px 3px 15px #0000004f !important;
+}
+.Drag_icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: -7px;
+	cursor: move;
+}
+.Drag_icon svg {
+	fill: #bababa;
+}

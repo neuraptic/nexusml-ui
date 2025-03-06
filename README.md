@@ -1,13 +1,129 @@
 <p align="center">
-  <img src="https://github.com/neuraptic/nexusml-ui/blob/release/0.1.0/public/media/LOGO_WITH_NAME.svg" alt="Logo" height="200">
+  <img src="public/media/LOGO_WITH_NAME.svg" alt="Logo" height="200">
 </p>
 
 - [Introduction](#introduction)
+- [Requirements](#requirements)
+  - [Libraries and Tools](#libraries-and-tools)
+  - [Material UI License](#material-ui-license)
+  - [Environment Variables](#environment-variables)
+- [Installation](#installation)
+- [Maintainers](#maintainers)
+- [Acknowledgments](#acknowledgments)
+- [Contribute](#contribute)
+- [Issues and Feature Requests](#issues-and-feature-requests)
 
 ## Introduction
 
-NexusML UI is a React-based web application designed to serve as the user interface for the [NexusML](https://github.com/neuraptic/nexusml).
+NexusML UI is a React-based web application designed to serve as the user interface for [NexusML](https://github.com/neuraptic/nexusml).
 
-We'll be releasing the first version of NexusML UI very soon. In the meantime, you can explore the [release/0.1.0](https://github.com/neuraptic/nexusml-ui/tree/release/0.1.0) branch.
+## Requirements
 
-Please refer to [nexusml/docs/what-is-nexusml.md](https://github.com/neuraptic/nexusml/blob/main/docs/what-is-nexusml.md) and [nexusml/docs/concepts.md](https://github.com/neuraptic/nexusml/blob/main/docs/concepts.md) for an overview of NexusML and its key features and concepts.
+### Libraries and Tools
+
+* [Node.js](https://nodejs.org/en)
+* [Material UI](https://mui.com/material-ui/getting-started/installation/)
+* [NexusML](https://github.com/neuraptic/nexusml)
+
+### Material UI License
+
+NexusML UI requires a valid Material UI license (Pro Plan) for certain features and usage.
+
+To obtain a license, follow these steps:
+
+1. Visit the [Material UI Licensing Page](https://mui.com/store/items/mui-x-pro/).
+2. Follow the instructions on the licensing page to purchase and activate your license.
+
+Once you have your license key, configure it by adding it to your project’s environment variables.
+
+```
+NEXUSML_UI_MUI_LICENSE='Your material UI license'
+```
+
+For further assistance, please refer to the [Material UI documentation](https://mui.com/getting-started/installation/).
+
+### Environment Variables
+
+Here is the list of required environment variables:
+
+> ⚠️ **Warning:** There are three environment setups (```.env.local```, ```.env.development```, and ```.env.production```) to ensure smooth deployment and proper configuration across different stages of development. Remember to update the package.json scripts to match your ```.env``` configuration.
+
+```
+NEXUSML_UI_NAME='APP name'
+NEXUSML_UI_ENV='environment (development or production)'
+NEXUSML_UI_API_URL='API url'
+NEXUSML_UI_MUI_LICENSE='Your Material UI license'
+```
+
+For Auth0 (optional), you will need to set the following environment variables:
+
+```
+NEXUSML_UI_AUTH_REDIRECT_URI='Auth0 redirect/callback URL'
+NEXUSML_UI_AUTH0_DOMAIN='Auth0 tenant domain'
+NEXUSML_UI_AUTH0_CLIENT_ID='Auth0 client ID'
+NEXUSML_UI_AUTH0_AUDIENCE='Auth0 audience'
+NEXUSML_UI_AUTH0_SCOPE='Auth0 scopes'
+```
+
+## Installation
+
+For installation, you must follow first this set of instructions:
+
+1. Install [Node.js](https://nodejs.org/en) in your local machine (last tested version Node 22.6.0)
+
+2. Clone the repository.
+
+```
+git clone https://github.com/neuraptic/nexusml-ui
+```
+
+3. Install all the necessary packages by going to the root directory of the project and using the `npm install` on the command line.
+
+> ⚠️ **Important:**
+If the installation retrieves a breaking error, remove node_modules folder, package-lock.json and reinstall.
+
+```javascript
+npm install
+```
+
+> ⚠️ **Warning:** Remember to update the scripts to match your environment configuration.
+
+Once you have all set, you can start the app:
+
+```
+npm run start
+npm run start-dev
+npm run start-prod
+```
+
+or create a new build for the required environment:
+
+```
+npm run build
+npm run build-dev
+npm run build-prod
+```
+
+## Maintainers
+
+NexusML UI is maintained by the following individuals (in alphabetical order):
+
+- Miguel Perez Martinez ([@miguelperezmartinez](https://github.com/MiguelPerezMartinez))
+
+## Acknowledgments
+
+We would like to recognize the valuable contributions of the following individuals (in alphabetical order):
+
+- Enrique Hernández Calabrés ([@ehcalabres](https://github.com/ehcalabres))
+- Vladyslav Naumenko ([@thepureinx000](https://github.com/thepureinx000))
+
+
+## Contribute
+
+Please review the [Contributing Guidelines](CONTRIBUTING.md) before making any contributions. Ensure that your code 
+and documentation comply with all the outlined instructions.
+
+## Issues and Feature Requests
+
+Report any issues or submit feature requests in the [Issues](https://github.com/neuraptic/nexusml-ui/issues) section 
+of the official NexusML UI repository. Discussions and updates related to these will be managed there.
